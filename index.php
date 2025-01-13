@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +88,19 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="./pages/seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                <?php if (isset($_SESSION['utilisateur'])): ?>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle"
+                            style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
+                            data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
+                        <div class="dropdown-menu m-0" style="border-radius: 5px;">
+                            <a href="mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <a href="./actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./pages/seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                <?php endif; ?>
             </div>
         </nav>
     </div>

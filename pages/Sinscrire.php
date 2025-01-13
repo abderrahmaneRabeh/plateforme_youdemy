@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,21 +138,42 @@
                 </a>
                 <p class="text-muted my-3">Cr&eacute;ez votre compte pour commencer &agrave; apprendre</p>
             </div>
-            <form id="registerForm" novalidate>
+            <form id="registerForm" method="POST" action="../actions/Sinscrire_action.php">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="name" placeholder="Nom complet" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nom complet" required>
                     <div class="invalid-feedback">Veuillez entrer votre nom complet</div>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="email" placeholder="Adresse e-mail" required>
-                    <div class="invalid-feedback">Veuillez entrer une adresse e-mail valide</div>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail"
+                        required>
+                    <?php if (isset($_SESSION['error_email'])): ?>
+                        <div class="invalid-feedback" style="display: block;">
+                            <?php echo $_SESSION['error_email'];
+                            unset($_SESSION['error_email']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Mot de passe" required>
-                    <div class="invalid-feedback">Le mot de passe doit contenir au moins 6 caract&egrave;res</div>
+                    <select class="form-control" id="role" name="role" required style="height: 100%;">
+                        <option value="">Choisissez un r&ocirc;le</option>
+                        <option value="etudiant">Etudiant</option>
+                        <option value="enseignant">Enseignant</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="confirmPassword"
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"
+                        required>
+                    <?php if (isset($_SESSION['error_password'])): ?>
+                        <div class="invalid-feedback" style="display: block;">
+                            <?php echo $_SESSION['error_password'];
+                            unset($_SESSION['error_password']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                         placeholder="Confirmez le mot de passe" required>
                 </div>
                 <button type="submit" class="btn btn-primary">S'inscrire</button>

@@ -12,7 +12,7 @@ class Utilisateur
     protected $password;
 
     protected $role;
-    public function __construct($nom, $email, $password, $id_utilisateur = null, $role)
+    public function __construct($nom, $email, $password, $role, $id_utilisateur = null)
     {
         $this->id_utilisateur = $id_utilisateur;
         $this->nom = $nom;

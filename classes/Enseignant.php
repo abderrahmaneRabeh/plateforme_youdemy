@@ -10,9 +10,9 @@ class Enseignant extends Utilisateur
     private $id_enseignant;
     private $is_active;
 
-    public function __construct($nom, $email, $password, $is_active, $id_utilisateur = null, $id_enseignant = null)
+    public function __construct($nom, $email, $password, $is_active, $role = 'enseignant', $id_utilisateur = null, $id_enseignant = null)
     {
-        parent::__construct($id_utilisateur, $nom, $email, $password, 'enseignant');
+        parent::__construct($nom, $email, $password, $role, $id_utilisateur);
         $this->id_enseignant = $id_enseignant;
         $this->is_active = $is_active;
     }

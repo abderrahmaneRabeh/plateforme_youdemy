@@ -15,7 +15,9 @@ class Database
         $username = 'root';
         $password = '';
         $this->connection = new PDO($dsn, $username, $password);
-        echo "Connected successfully";
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        // echo "Connected successfully";
     }
 
     public static function getInstance()
