@@ -1,0 +1,15 @@
+{
+    "name": "rabeh-youcode/plateforme_youdemy",
+    "autoload": {
+        "psr-4": {
+            "classes\\": "classes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abderrahmane Rabeh",
+            "email": "rabehlife144@gmail.com"
+        }
+    ],
+    "require": {}
+}
