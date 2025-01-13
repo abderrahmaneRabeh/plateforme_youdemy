@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Edukate - Online Education Website Template</title>
+    <title>YouDemy - Site web pour la plateforme de cours</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="./assets/img/favicon.ico" rel="icon">
+    <link href="./assets/img/ycd.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -65,7 +65,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-            <a href="index.html" class="navbar-brand ml-lg-3">
+            <a href="./index.php" class="navbar-brand ml-lg-3">
                 <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>Edukate</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -73,9 +73,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="../index.php" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="course.html" class="nav-item nav-link">Courses</a>
+                    <a href="./pages/courses.php" class="nav-item nav-link">Courses</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
@@ -376,199 +376,6 @@
         </div>
     </div>
     <!-- Courses End -->
-
-
-    <!-- Team Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative mb-5">
-                <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Instructors</h6>
-                <h1 class="display-4">Meet Our Instructors</h1>
-            </div>
-            <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
-                <div class="team-item">
-                    <img class="./assets/img-fluid w-100" src="./assets/img/team-1.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item">
-                    <img class="./assets/img-fluid w-100" src="./assets/img/team-2.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item">
-                    <img class="./assets/img-fluid w-100" src="./assets/img/team-3.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item">
-                    <img class="./assets/img-fluid w-100" src="./assets/img/team-4.jpg" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid bg-image py-5" style="margin: 90px 0;">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Testimonial</h6>
-                        <h1 class="display-4">What Say Our Students</h1>
-                    </div>
-                    <p class="m-0">Dolor est dolores et nonumy sit labore dolores est sed rebum amet, justo duo ipsum
-                        sanctus dolore magna rebum sit et. Diam lorem ea sea at. Nonumy et at at sed justo est nonumy
-                        tempor. Vero sea ea eirmod, elitr ea amet diam ipsum at amet. Erat sed stet eos ipsum diam</p>
-                </div>
-                <div class="col-lg-7">
-                    <div class="owl-carousel testimonial-carousel">
-                        <div class="bg-white p-5">
-                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed sit est est ipsum eos clita est
-                                ipsum. Est nonumy tempor at kasd. Sed at dolor duo ut dolor, et justo erat dolor magna
-                                sed stet amet elitr duo lorem</p>
-                            <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                                <img class="./assets/img-fluid mr-4" src="./assets/img/testimonial-2.jpg" alt="">
-                                <div>
-                                    <h5>Student Name</h5>
-                                    <span>Web Design</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-5">
-                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed sit est est ipsum eos clita est
-                                ipsum. Est nonumy tempor at kasd. Sed at dolor duo ut dolor, et justo erat dolor magna
-                                sed stet amet elitr duo lorem</p>
-                            <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                                <img class="./assets/img-fluid mr-4" src="./assets/img/testimonial-1.jpg" alt="">
-                                <div>
-                                    <h5>Student Name</h5>
-                                    <span>Web Design</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial Start -->
-
-
-    <!-- Contact Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-primary mr-4">
-                                <i class="fa fa-2x fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Our Location</h4>
-                                <p class="m-0">123 Street, New York, USA</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-secondary mr-4">
-                                <i class="fa fa-2x fa-phone-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Call Us</h4>
-                                <p class="m-0">+012 345 6789</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="btn-icon bg-warning mr-4">
-                                <i class="fa fa-2x fa-envelope text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Email Us</h4>
-                                <p class="m-0">info@example.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Need Help?</h6>
-                        <h1 class="display-4">Send Us A Message</h1>
-                    </div>
-                    <div class="contact-form">
-                        <form>
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <input type="text"
-                                        class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                        placeholder="Your Name" required="required">
-                                </div>
-                                <div class="col-6 form-group">
-                                    <input type="email"
-                                        class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                        placeholder="Your Email" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                    placeholder="Subject" required="required">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5"
-                                    placeholder="Message" required="required"></textarea>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Contact End -->
 
 
     <!-- Footer Start -->
