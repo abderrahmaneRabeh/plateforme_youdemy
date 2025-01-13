@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,12 +36,31 @@
                 </a>
                 <p class="text-muted my-3">Bienvenue ! Veuillez vous connecter &agrave; votre compte.</p>
             </div>
-            <form id="loginForm">
+            <form id="loginForm" method="post" action="../actions/SeConnecter_action.php">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="email" placeholder="Adresse e-mail" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail"
+                        required>
+                    <?php if (isset($_SESSION['error_email'])): ?>
+                        <div class="invalid-feedback" style="display: block;">
+                            <?php echo $_SESSION['error_email'];
+                            unset($_SESSION['error_email']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Mot de passe" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"
+                        required>
+
+                    <?php if (isset($_SESSION['error_password'])): ?>
+                        <div class="invalid-feedback" style="display: block;">
+                            <?php echo $_SESSION['error_password'];
+                            unset($_SESSION['error_password']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
                 <button type="submit" class="btn btn-primary">Connexion</button>
             </form>
