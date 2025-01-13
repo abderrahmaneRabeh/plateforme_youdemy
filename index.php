@@ -86,7 +86,7 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                <a href="./pages/seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
             </div>
         </nav>
     </div>
