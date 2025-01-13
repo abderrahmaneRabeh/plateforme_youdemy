@@ -33,9 +33,9 @@
         <div class="row py-2 px-lg-5">
             <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center text-white">
-                    <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+                    <small><i class="fa fa-phone-alt mr-2"></i>+212679997258</small>
                     <small class="px-3">|</small>
-                    <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
+                    <small><i class="fa fa-envelope mr-2"></i>rabehlife144@gmail.com</small>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -73,20 +73,20 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="../index.php" class="nav-item nav-link active">Home</a>
-                    <a href="./pages/courses.php" class="nav-item nav-link">Courses</a>
+                    <a href="../index.php" class="nav-item nav-link active">Accueil</a>
+                    <a href="./pages/courses.php" class="nav-item nav-link">Cours</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
-                            <a href="detail.html" class="dropdown-item">Course Detail</a>
-                            <a href="feature.html" class="dropdown-item">Our Features</a>
-                            <a href="team.html" class="dropdown-item">Instructors</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="detail.html" class="dropdown-item">D&eacute;tail du cours</a>
+                            <a href="feature.html" class="dropdown-item">Nos fonctionnalit&eacute;s</a>
+                            <a href="team.html" class="dropdown-item">Instructeurs</a>
+                            <a href="testimonial.html" class="dropdown-item">T&eacute;moignages</a>
                         </div>
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a>
+                <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
             </div>
         </nav>
     </div>
@@ -95,26 +95,13 @@
 
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
-        <div class="container text-center my-5 py-5">
-            <h1 class="text-white mt-4 mb-4">Learn From Home</h1>
-            <h1 class="text-white display-1 mb-5">Education Courses</h1>
-            <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Courses 1</a>
-                            <a class="dropdown-item" href="#">Courses 2</a>
-                            <a class="dropdown-item" href="#">Courses 3</a>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control border-light" style="padding: 30px 25px;"
-                        placeholder="Keyword">
-                    <div class="input-group-append">
-                        <button class="btn btn-secondary px-4 px-lg-5">Search</button>
-                    </div>
-                </div>
+        <div class="container text-center my-2 py-2">
+            <h1 class="text-white mt-4 mb-4">Vous &ecirc;tes &agrave; la bonne place</h1>
+            <h1 class="text-white display-4 mb-5">D&eacute;couvrez nos cours d'apprentissage</h1>
+            <div class="mx-auto mb-2" style="width: 100%; max-width: 800px;">
+                <p class="text-white">Vous cherchez une plateforme de formation en ligne pour am&eacute;liorer vos
+                    comp&eacute;tences ? VousDemy est l'endroit id&eacute;al pour vous. Nous offrons des milliers de
+                    cours dans des domaines diff&eacute;rents pour vous aider &agrave; atteindre vos objectifs.</p>
             </div>
         </div>
     </div>
@@ -122,50 +109,52 @@
 
 
     <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
+    <div class="container-fluid ">
+        <div class="container ">
             <div class="row">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="./assets/img/about.jpg"
+                        <img class="position-absolute w-100 h-100" src="./assets/img/courses-3.jpg"
                             style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
-                        <h1 class="display-4">First Choice For Online Education Anywhere</h1>
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">A propos</h6>
+                        <h1 class="display-4"><span class="text-primary">YouDemy</span>, votre plateforme de formation
+                            en ligne</h1>
                     </div>
-                    <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor
-                        voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
-                        et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur
-                        takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore.
-                        Amet erat amet et magna</p>
+                    <p>Nous sommes une plateforme de formation en ligne qui propose des cours et des formations dans
+                        diff&eacute;rents domaines. Nous offrons des ressources &eacute;ducatives et des outils pour
+                        vous
+                        aider &agrave; am&eacute;liorer vos comp&eacute;tences et &agrave; atteindre vos objectifs.
+                        Nous sommes votre premier choix pour l'&eacute;ducation en ligne, partout dans le monde.</p>
                     <div class="row pt-3 mx-0">
                         <div class="col-3 px-0">
                             <div class="bg-success text-center p-4">
                                 <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Available<span class="d-block">Subjects</span>
+                                <h6 class="text-uppercase text-white">Cours <span class="d-block">disponibles</span>
                                 </h6>
                             </div>
                         </div>
                         <div class="col-3 px-0">
                             <div class="bg-primary text-center p-4">
                                 <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Online<span class="d-block">Courses</span></h6>
+                                <h6 class="text-uppercase text-white">Cours <span class="d-block">en ligne</span></h6>
                             </div>
                         </div>
                         <div class="col-3 px-0">
                             <div class="bg-secondary text-center p-4">
                                 <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Skilled<span class="d-block">Instructors</span>
-                                </h6>
+                                <h6 class="text-uppercase text-white">Instructeurs <span
+                                        class="d-block">exp&eacute;riment&eacute;s</span></h6>
                             </div>
                         </div>
                         <div class="col-3 px-0">
                             <div class="bg-warning text-center p-4">
                                 <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Happy<span class="d-block">Students</span></h6>
+                                <h6 class="text-uppercase text-white">Etudiants <span class="d-block">satisfaits</span>
+                                </h6>
                             </div>
                         </div>
                     </div>
@@ -182,21 +171,22 @@
             <div class="row">
                 <div class="col-lg-7 my-5 pt-5 pb-lg-5">
                     <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?
-                        </h6>
-                        <h1 class="display-4">Why You Should Start Learning with Us?</h1>
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Pourquoi
+                            choisir nous ?</h6>
+                        <h1 class="display-4">Pourquoi commencer &agrave; apprendre avec nous ?</h1>
                     </div>
-                    <p class="mb-4 pb-2">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores
-                        amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita
-                        est. Diam sanctus gubergren sit rebum clita amet.</p>
+                    <p class="mb-4 pb-2">Nous sommes YouDemy, une plateforme de formation en ligne qui propose des
+                        cours et des formations dans diff&eacute;rents domaines. Nous offrons des ressources
+                        &eacute;ducatives et des outils pour vous aider &agrave; am&eacute;liorer vos comp&eacute;tences
+                        et &agrave; atteindre vos objectifs.</p>
                     <div class="d-flex mb-3">
                         <div class="btn-icon bg-primary mr-4">
                             <i class="fa fa-2x fa-graduation-cap text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>Skilled Instructors</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no
-                                nonumy et eos dolor magna ipsum.</p>
+                            <h4>Des instructeurs exp&eacute;riment&eacute;s</h4>
+                            <p>Nous avons des instructeurs exp&eacute;riment&eacute;s qui vous aideront &agrave;
+                                atteindre vos objectifs.</p>
                         </div>
                     </div>
                     <div class="d-flex mb-3">
@@ -204,9 +194,9 @@
                             <i class="fa fa-2x fa-certificate text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>International Certificate</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no
-                                nonumy et eos dolor magna ipsum.</p>
+                            <h4>Des certificats internationaux</h4>
+                            <p>Nous offrons des certificats internationaux qui vous aideront &agrave; trouver un
+                                emploi.</p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -214,15 +204,15 @@
                             <i class="fa fa-2x fa-book-reader text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>Online Classes</h4>
-                            <p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita
-                                magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <h4>Des cours en ligne</h4>
+                            <p class="m-0">Nous offrons des cours en ligne qui vous permettent d'apprendre &agrave;
+                                votre propre rythme.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="./assets/img/feature.jpg"
+                        <img class="position-absolute w-100 h-100" src="./assets/img/courses-2.jpg"
                             style="object-fit: cover;">
                     </div>
                 </div>
@@ -233,12 +223,12 @@
 
 
     <!-- Courses Start -->
-    <div class="container-fluid px-0 py-5">
-        <div class="row mx-0 justify-content-center pt-5">
+    <div class="container-fluid px-0 ">
+        <div class="row mx-0 justify-content-center ">
             <div class="col-lg-6">
                 <div class="section-title text-center position-relative mb-4">
-                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Our Courses</h6>
-                    <h1 class="display-4">Checkout New Releases Of Our Courses</h1>
+                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Nos cours</h6>
+                    <h1 class="display-5">D&eacute;couvrez les derni&egrave;res sorties de nos cours</h1>
                 </div>
             </div>
         </div>
@@ -334,45 +324,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center bg-image mx-0 mb-5">
-            <div class="col-lg-6 py-5">
-                <div class="bg-white p-5 my-5">
-                    <h1 class="text-center mb-4">30% Off For New Students</h1>
-                    <form>
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name"
-                                        style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email"
-                                        style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <select class="custom-select bg-light border-0 px-3" style="height: 60px;">
-                                        <option selected>Select A courses</option>
-                                        <option value="1">courses 1</option>
-                                        <option value="2">courses 1</option>
-                                        <option value="3">courses 1</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block" type="submit" style="height: 60px;">Sign Up
-                                    Now</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
     </div>
     <!-- Courses End -->
 
@@ -383,57 +335,23 @@
             <div class="row">
                 <div class="col-md-6 mb-5">
                     <a href="index.html" class="navbar-brand">
-                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>Edukate</h1>
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>YouDemy</h1>
                     </a>
-                    <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est,
-                        tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero
-                        clita diam</p>
+                    <p class="m-0">YouDemy est une plateforme de formation en ligne qui propose des cours et des
+                        formations dans divers domaines. Nous offrons des ressources &eacute;ducatives et des outils
+                        pour vous aider &agrave; am&eacute;liorer vos comp&eacute;tences et &agrave; atteindre vos
+                        objectifs.</p>
                 </div>
                 <div class="col-md-6 mb-5">
-                    <h3 class="text-white mb-4">Newsletter</h3>
+                    <h3 class="text-white mb-4">Abonnez-vous &agrave; notre newsletter</h3>
                     <div class="w-100">
                         <div class="input-group">
                             <input type="text" class="form-control border-light" style="padding: 30px;"
-                                placeholder="Your Email Address">
+                                placeholder="Votre adresse e-mail">
                             <div class="input-group-append">
-                                <button class="btn btn-primary px-4">Sign Up</button>
+                                <button class="btn btn-primary px-4">Inscrivez-vous</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Get In Touch</h3>
-                    <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
-                    <div class="d-flex justify-content-start mt-4">
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
-                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Our Courses</h3>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Quick Links</h3>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy Policy</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms &
-                            Condition</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Regular FAQs</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help & Support</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
                     </div>
                 </div>
             </div>
@@ -444,12 +362,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">Your Site Name</a>. All Rights
-                        Reserved.
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">YouDemy</a>. Tous droits
+                        r&eacute;serv&eacute;s.
                     </p>
                 </div>
                 <div class="col-md-6 text-center text-md-right">
-                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    <p class="m-0">Crée par <a class="text-white" href="https://htmlcodex.com">Abderrahmane Rabeh</a>
                     </p>
                 </div>
             </div>
