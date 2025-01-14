@@ -33,13 +33,13 @@
             <h3><i class="fa fa-book-reader mr-2"></i>YouDemy</h3>
         </div>
         <div class="sidebar-menu">
-            <a href="./StatistiquesPanel.php" class="menu-item active">
+            <a href="./StatistiquesPanel.php" class="menu-item">
                 <i class="fas fa-tachometer-alt"></i>Dashboard
             </a>
             <a href="./CoursesPanel.php" class="menu-item">
                 <i class="fas fa-graduation-cap"></i>Cours
             </a>
-            <a href="./InscriptionPanel.php" class="menu-item">
+            <a href="./InscriptionPanel.php" class="menu-item active">
                 <i class="fas fa-list-ol"></i>Inscriptions
             </a>
         </div>
