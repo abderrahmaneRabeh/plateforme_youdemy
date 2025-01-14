@@ -122,6 +122,18 @@ session_start();
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if (isset($_SESSION['success_enseignant'])): ?>
+                            <div class="alert alert-success" role="alert">
+                                <?php echo $_SESSION['success_enseignant'];
+                                unset($_SESSION['success_enseignant']); ?>
+                            </div>
+                        <?php elseif (isset($_SESSION['error_enseignant'])): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $_SESSION['error_enseignant'];
+                                unset($_SESSION['error_enseignant']); ?>
+                            </div>
+                        <?php endif; ?>
+
                         <?php foreach ($utilisateursObjEnseignant as $utilisateur): ?>
 
                             <?php if ($utilisateur->role === 'enseignant'): ?>
@@ -130,11 +142,12 @@ session_start();
                                     <td><?= $utilisateur->email ?></td>
                                     <td><?= $utilisateur->role ?></td>
                                     <td class="text-center">
-                                        <form action="./actions/activerEnseignant.php" method="post">
+                                        <form action="../actions/activerEnseignant.php" method="post">
+                                            <input type="hidden" name="id" value="<?= $utilisateur->id_utilisateur ?>">
                                             <?php if ($utilisateur->is_active != 0): ?>
                                                 <i class="fas fa-check-circle text-success" style="margin-left: 5px;"></i>
                                             <?php else: ?>
-                                                <select class="form-control" style="width: 105px; margin: 0 auto;"
+                                                <select class="form-control" style="width: 105px; margin: 0 auto;" name="is_active"
                                                     onchange="this.form.submit()">
                                                     <option value="0" selected>Inactive</option>
                                                     <option value="1">Active</option>
@@ -142,9 +155,13 @@ session_start();
                                             </form>
                                         <?php endif; ?>
                                     </td>
-                                    <td class="text-center"><a
-                                            href="./utilisateurPanel.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
-                                            class="btn btn-primary"><i class="fas fa-trash-alt"></i></a></td>
+                                    <td class="text-center">
+                                        <a href="../actions/DeleteEnseignant.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
+                                            onclick="return confirm('Etes-vous s ur de vouloir supprimer cet utilisateur ?')"
+                                            class="btn btn-primary">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
 
                                 </tr>
                             <?php endif; ?>
@@ -191,6 +208,7 @@ session_start();
                                     </td>
                                     <td class="text-center">
                                         <a href="./utilisateurPanel.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
+                                            onclick="return confirm('Etes-vous s ur de vouloir supprimer cet utilisateur ?')"
                                             class="btn btn-primary">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
