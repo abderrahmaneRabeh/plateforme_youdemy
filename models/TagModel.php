@@ -41,4 +41,13 @@ class TagModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function DeleteCoursTags($id_cours)
+    {
+        $sql = "DELETE FROM cours_tags WHERE id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }

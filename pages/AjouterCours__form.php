@@ -78,7 +78,7 @@ $tags = $TagModel->getAllTags();
     <div class="container">
         <div class="form-container">
             <div class="d-flex justify-content-between">
-                <a href="../enseignantPanel/StatistiquesPanel.php" class="btn btn-outline-primary">Retour au tableau de
+                <a href="../enseignantPanel/CoursesPanel.php" class="btn btn-outline-primary">Retour au tableau de
                     bord</a>
                 <h3 class="text-primary">Ajouter un nouveau cours</h3>
             </div>

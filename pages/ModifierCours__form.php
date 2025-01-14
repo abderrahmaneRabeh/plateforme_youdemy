@@ -86,12 +86,15 @@ if (isset($_GET['id'])) {
     <div class="container">
         <div class="form-container">
             <div class="d-flex justify-content-between">
-                <a href="../enseignantPanel/StatistiquesPanel.php" class="btn btn-outline-primary">Retour au tableau de
+                <a href="../enseignantPanel/CoursesPanel.php" class="btn btn-outline-primary">Retour au tableau de
                     bord</a>
                 <h3 class="text-primary">Modifier un cours</h3>
             </div>
             <hr>
-            <form id="courseForm" method="POST" action="../actions/AjouterCours_action.php">
+            <form id="courseForm" method="POST" action="../actions/ModifierCours_action.php">
+
+                <input type="hidden" name="id_cour" value="<?= $course['id_cour'] ?>">
+                <input type="hidden" name="is_video" value="<?= $course['is_video'] ?>">
                 <div class="form-group">
                     <label for="titre_cour">Titre du cours</label>
                     <input type="text" value="<?= $course['titre_cour'] ?>" class="form-control" id="titre_cour"

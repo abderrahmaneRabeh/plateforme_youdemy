@@ -78,4 +78,31 @@ class CourseModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function updateCourse($CourseObj)
+    {
+        $sql = "UPDATE cours SET 
+        titre_cour = :titre_cour, 
+        imgPrincipale_cours = :imgPrincipale_cours, 
+        imgSecondaire_cours = :imgSecondaire_cours, 
+        description_cours = :description_cours, 
+        contenu_cours = :contenu_cours,
+        category_id = :category_id, 
+        id_enseignant = :id_enseignant, 
+        is_video = :is_video
+        WHERE id_cour = :id_cour";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':titre_cour', $CourseObj->titre_cour);
+        $stmt->bindValue(':imgPrincipale_cours', $CourseObj->imgPrincipale_cours);
+        $stmt->bindValue(':imgSecondaire_cours', $CourseObj->imgSecondaire_cours);
+        $stmt->bindValue(':description_cours', $CourseObj->description_cours);
+        $stmt->bindValue(':contenu_cours', $CourseObj->contenu_cours);
+        $stmt->bindValue(':category_id', $CourseObj->category_id);
+        $stmt->bindValue(':id_enseignant', $CourseObj->id_enseignant);
+        $stmt->bindValue(':is_video', $CourseObj->is_video);
+        $stmt->bindValue(':id_cour', $CourseObj->id_cour);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }
