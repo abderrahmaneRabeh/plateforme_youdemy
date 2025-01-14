@@ -58,37 +58,15 @@
                     class="
                 fas fa-sign-out-alt" style="color: white;"></i></a>
         </div>
-
         <!-- Stats Cards -->
         <div class="row">
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>1,234</h3>
-                    <p>Total Users</p>
-                </div>
+            <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
+                <span class="text-muted">Gérez vos cours efficacement</span>
+                <a class="btn btn-primary text-white" href="../pages/AjouterCours__form.php">
+                    <i class="fas fa-plus-circle"></i> Ajouter un nouveau cours
+                </a>
             </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>56</h3>
-                    <p>Total Courses</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>89</h3>
-                    <p>Reservations</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-tag"></i>
-                    <h3>23</h3>
-                    <p>Categories</p>
-                </div>
-            </div>
+
         </div>
 
         <!-- Recent Activity -->
