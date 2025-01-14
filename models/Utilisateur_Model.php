@@ -28,7 +28,7 @@ class Utilisateur_Model
 
     public function createNewEtudiant($objEtudiant)
     {
-        $sql = "INSERT INTO etudiants (id_utilisateur) VALUES (:id_utilisateur)";
+        $sql = "INSERT INTO etudiants (id_utilisateur, is_baned) VALUES (:id_utilisateur,1)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_utilisateur', $objEtudiant->id_utilisateur);
         $stmt->execute();

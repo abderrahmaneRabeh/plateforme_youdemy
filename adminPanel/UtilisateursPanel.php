@@ -186,6 +186,19 @@ session_start();
                         </tr>
                     </thead>
                     <tbody>
+
+                        <?php if (isset($_SESSION['success_etudiant'])): ?>
+                            <div class="alert alert-success" role="alert">
+                                <?php echo $_SESSION['success_etudiant'];
+                                unset($_SESSION['success_etudiant']); ?>
+                            </div>
+                        <?php elseif (isset($_SESSION['error_etudiant'])): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $_SESSION['error_etudiant'];
+                                unset($_SESSION['error_etudiant']); ?>
+                            </div>
+                        <?php endif; ?>
+
                         <?php foreach ($utilisateursObjEtudiant as $utilisateur): ?>
 
                             <?php if ($utilisateur->role === 'etudiant'): ?>
@@ -195,19 +208,15 @@ session_start();
                                     <td><?= $utilisateur->role ?></td>
                                     <td class="text-center">
                                         <?php if ($utilisateur->is_baned == 1): ?>
-                                            <form action="./actions/UnbanEtudiant.php" method="post" style="display: inline;">
-                                                <input type="hidden" name="id" value="<?= $utilisateur->id_utilisateur ?>">
-                                                <button type="submit" class="btn btn-success btn-sm">Activate</button>
-                                            </form>
+                                            <a href="../actions/banUEtudiant.php?id=<?= $utilisateur->id_utilisateur ?>&action=0"
+                                                class="btn btn-success btn-sm" style="display: inline;">Activate</a>
                                         <?php else: ?>
-                                            <form action="./actions/BanEtudiant.php" method="post" style="display: inline;">
-                                                <input type="hidden" name="id" value="<?= $utilisateur->id_utilisateur ?>">
-                                                <button type="submit" class="btn btn-danger btn-sm">Ban</button>
-                                            </form>
+                                            <a href="../actions/banUEtudiant.php?id=<?= $utilisateur->id_utilisateur ?>&action=1"
+                                                class="btn btn-danger btn-sm" style="display: inline;">Ban</a>
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <a href="./utilisateurPanel.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
+                                        <a href="../actions/DeleteEtudiant.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
                                             onclick="return confirm('Etes-vous s ur de vouloir supprimer cet utilisateur ?')"
                                             class="btn btn-primary">
                                             <i class="fas fa-trash-alt"></i>

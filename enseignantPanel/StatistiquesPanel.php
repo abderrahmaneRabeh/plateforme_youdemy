@@ -37,7 +37,7 @@
                 <i class="fas fa-tachometer-alt"></i>Dashboard
             </a>
             <a href="./CoursesPanel.php" class="menu-item">
-                <i class="fas fa-graduation-cap"></i>Cours
+                <i class="fas fa-graduation-cap"></i>
             </a>
             <a href="./InscriptionPanel.php" class="menu-item">
                 <i class="fas fa-list-ol"></i>Inscriptions

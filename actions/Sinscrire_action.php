@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($role === 'etudiant') {
-        $objEtudiant = new Etudiant($nom, $email, $passwordHashed, $role, $id_utilisateur);
+        $objEtudiant = new Etudiant($nom, $email, $passwordHashed, 1, $role, $id_utilisateur);
         $etudiantModel = $utilisateurModel->createNewEtudiant($objEtudiant);
 
         if ($etudiantModel) {
