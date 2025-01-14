@@ -64,3 +64,38 @@ CREATE TABLE inscription (
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant),
     FOREIGN KEY (id_cour) REFERENCES cours(id_cour)
 );
+
+
+-- insetion de donnees
+
+INSERT INTO `tags` (`tag_name`) 
+VALUES 
+('HTML'),
+('CSS'),
+('JavaScript'),
+('React'),
+('Bootstrap'),
+('Tailwind CSS'),
+('Node.js'),
+('Express'),
+('PHP'),
+('Laravel'),
+('Django'),
+('Spring Boot'),
+('GraphQL'),
+('REST API'),
+('MongoDB');
+
+
+INSERT INTO `categories` (`category_name`) 
+VALUES 
+('Web Development'),
+('Mobile Development'),
+('Artificial Intelligence'),
+('Machine Learning'),
+('Cybersecurity'),
+('Cloud Computing'),
+('Data Science'),
+('Internet of Things'),
+('Blockchain'),
+('Game Development');
