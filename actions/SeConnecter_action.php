@@ -2,9 +2,6 @@
 
 
 namespace Actions;
-use Classes\Utilisateur;
-use Classes\Enseignant;
-use Classes\Etudiant;
 use Models\Utilisateur_Model;
 
 session_start();
@@ -37,10 +34,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($utilisateur['role'] === 'enseignant') {
-        $enseignant = $utilisateurModel->getElementById($utilisateur['id_utilisateur']);
+        $enseignant = $utilisateurModel->getUtilisateurEnseignantById($utilisateur['id_utilisateur']);
         $_SESSION['utilisateur'] = $enseignant;
-        header('Location: ../index.php');
-        exit();
+
+
+        if ($enseignant['is_active'] == 0) {
+            $_SESSION['error_enseignant'] = "L'enseignant n'est pas actif.";
+            header('Location: ../pages/seConnecter.php');
+            exit();
+
+        } else {
+            header('Location: ../enseignantPanel/StatistiquesPanel.php');
+            exit();
+
+        }
+
     } elseif ($utilisateur['role'] === 'etudiant') {
         $etudiant = $utilisateurModel->getElementById($utilisateur['id_utilisateur']);
         $_SESSION['utilisateur'] = $etudiant;

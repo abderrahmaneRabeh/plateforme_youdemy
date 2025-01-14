@@ -65,15 +65,24 @@ class Utilisateur_Model
 
     public function getAllUtilisateursEnseignant()
     {
-        $sql = "SELECT * FROM utilisateurs join enseignants on utilisateurs.id_utilisateur = enseignants.id_utilisateur";
+        $sql = "SELECT * FROM utilisateurs u join enseignants e on u.id_utilisateur = e.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
+    public function getUtilisateurEnseignantById($id_utilisateur)
+    {
+        $sql = "SELECT * FROM utilisateurs u join enseignants e on u.id_utilisateur = e.id_utilisateur WHERE u.id_utilisateur = :id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
     public function getAllUtilisateursEtudiant()
     {
-        $sql = "SELECT * FROM utilisateurs join etudiants on utilisateurs.id_utilisateur = etudiants.id_utilisateur";
+        $sql = "SELECT * FROM utilisateurs u join etudiants e on u.id_utilisateur = e.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -96,5 +105,6 @@ class Utilisateur_Model
         $stmt->execute();
         return $stmt->rowCount();
     }
+
 
 }
