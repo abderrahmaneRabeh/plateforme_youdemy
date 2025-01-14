@@ -62,4 +62,13 @@ class Utilisateur_Model
         return $stmt->fetch();
     }
 
+
+    public function getAllUtilisateurs()
+    {
+        $sql = "SELECT * FROM utilisateurs";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }

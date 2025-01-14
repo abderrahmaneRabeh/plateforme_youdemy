@@ -46,6 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['utilisateur'] = $etudiant;
         header('Location: ../index.php');
         exit();
+    } elseif ($utilisateur['role'] === 'administrateur') {
+
+        $administrateur = $utilisateurModel->getElementById($utilisateur['id_utilisateur']);
+        $_SESSION['utilisateur'] = $administrateur;
+        header('Location: ../adminPanel/StatistiquesPanel.php');
+        exit();
     }
 
 }
