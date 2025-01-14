@@ -133,9 +133,9 @@
                     <label for="tags">tags </label><br>
                     <select class="form-control" id="tags" name="tags[]" multiple required>
                         <option value="">Sélectionnez des mots-clés</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="javascript">JavaScript</option>
+                        <option value="1">HTML</option>
+                        <option value="2">CSS</option>
+                        <option value="3">JavaScript</option>
                     </select>
                 </div>
 
