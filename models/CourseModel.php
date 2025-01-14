@@ -61,6 +61,15 @@ class CourseModel
         return $stmt->fetchAll();
     }
 
+    public function getCourseById($id_cours)
+    {
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category WHERE co.id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
     public function deleteCourse($id_cours)
     {
         $sql = "DELETE FROM cours WHERE id_cour = :id_cour";

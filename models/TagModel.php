@@ -32,4 +32,13 @@ class TagModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function getCoursTags($id_cours)
+    {
+        $sql = "SELECT * FROM cours_tags WHERE id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
