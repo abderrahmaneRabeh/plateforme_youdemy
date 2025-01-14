@@ -102,9 +102,19 @@
                         required></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="contenu_cours">URL du contenu du cours (vidéo/PDF)</label>
-                    <input type="url" class="form-control" id="contenu_cours" name="contenu_cours" required>
+                <div class="form-group" id="contenu_cours_group">
+                    <label for="contenu_cours">Type de contenu du cours</label>
+                    <select class="form-control" id="contenu_cours_type" required>
+                        <option value="">Sélectionnez un type de contenu</option>
+                        <option value="video">Vidéo</option>
+                        <option value="pdf">Document PDF/Word/PPT</option>
+                    </select>
+                    <div class="mt-2" id="inputContainer">
+
+                    </div>
+
+
+
                 </div>
 
                 <div class="form-group">
@@ -137,6 +147,25 @@
     </div>
 
     <!-- JavaScript Libraries -->
+    <script>
+        let select = document.getElementById("contenu_cours_type");
+        let inputContainer = document.getElementById("inputContainer");
+
+        select.addEventListener("change", function () {
+
+            if (select.value === "video") {
+                inputContainer.innerHTML = `
+                    <input type="url" class="form-control mt-3" id="contenu_cours" name="contenu_cours_video" placeholder="URL de la vidéo" required>
+                `;
+            } else if (select.value === "pdf") {
+                inputContainer.innerHTML = `
+                    <input type="url" class="form-control mt-3" id="contenu_cours" name="contenu_cours_document" placeholder="URL du Fichier Document" required>
+                `;
+            }
+        })
+
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 

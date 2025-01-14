@@ -1,0 +1,10 @@
+<?php
+
+namespace Classes;
+
+abstract class Ajoutercourse
+{
+
+
+    abstract public function ajouterCourse($titre_cour, $imgPrincipale_cours, $imgSecondaire_cours, $description_cours, $contenu_cours, $category_id, $id_enseignant);
+}
