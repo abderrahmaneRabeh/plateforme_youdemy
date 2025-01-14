@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+<?php
+
+use Models\CategoryModel;
+use Models\TagModel;
+
+require_once '../models/CategoryModel.php';
+require_once '../models/TagModel.php';
+
+$CategoryModel = new CategoryModel();
+$TagModel = new TagModel();
+
+$categories = $CategoryModel->getAllCategories();
+$tags = $TagModel->getAllTags();
+
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -121,11 +135,11 @@
                     <label for="category_id">Catégorie</label>
                     <select class="form-control" id="category_id" name="category_id" required>
                         <option value="">Sélectionnez une catégorie</option>
-                        <option value="1">Développement web</option>
-                        <option value="2">Développement mobile</option>
-                        <option value="3">Science des données</option>
-                        <option value="4">Design</option>
-                        <option value="5">Business</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo $category['id_category']; ?>">
+                                <?php echo $category['category_name']; ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -133,9 +147,9 @@
                     <label for="tags">tags </label><br>
                     <select class="form-control" id="tags" name="tags[]" multiple required>
                         <option value="">Sélectionnez des mots-clés</option>
-                        <option value="1">HTML</option>
-                        <option value="2">CSS</option>
-                        <option value="3">JavaScript</option>
+                        <?php foreach ($tags as $tag): ?>
+                            <option value="<?php echo $tag['id_tag']; ?>"><?php echo $tag['tag_name']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
