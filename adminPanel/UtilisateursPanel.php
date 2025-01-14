@@ -1,24 +1,40 @@
 <?php
 
 namespace Dashboard\Admin;
-use Classes\Utilisateur;
+use Classes\Enseignant;
+use Classes\Etudiant;
 use Models\Utilisateur_Model;
 
-require_once '../classes/Utilisateur.php';
+require_once '../classes/Enseignant.php';
+require_once '../classes/Etudiant.php';
 require_once '../models/Utilisateur_Model.php';
 
 $utilisateurModel = new Utilisateur_Model();
 
-$utilisateurs = $utilisateurModel->getAllUtilisateurs();
+$utilisateursEnseignant = $utilisateurModel->getAllUtilisateursEnseignant();
+$utilisateursEtudiant = $utilisateurModel->getAllUtilisateursEtudiant();
 
-$utilisateursObj = [];
-foreach ($utilisateurs as $utilisateur) {
+$utilisateursObjEtudiant = [];
+$utilisateursObjEnseignant = [];
+
+foreach ($utilisateursEnseignant as $utilisateur) {
     $nom = $utilisateur['nom'];
     $email = $utilisateur['email'];
     $role = $utilisateur['role'];
     $id_utilisateur = $utilisateur['id_utilisateur'];
+    $is_active = $utilisateur['is_active'];
 
-    $utilisateursObj[] = new Utilisateur($nom, $email, '', $role, $id_utilisateur);
+    $utilisateursObjEnseignant[] = new Enseignant($nom, $email, '', $is_active, $role, $id_utilisateur);
+}
+
+foreach ($utilisateursEtudiant as $utilisateur) {
+    $nom = $utilisateur['nom'];
+    $email = $utilisateur['email'];
+    $role = $utilisateur['role'];
+    $id_utilisateur = $utilisateur['id_utilisateur'];
+    $is_baned = $utilisateur['is_baned'];
+
+    $utilisateursObjEtudiant[] = new Etudiant($nom, $email, '', $is_baned, $role, $id_utilisateur);
 }
 
 
@@ -101,27 +117,30 @@ session_start();
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th class="text-center">Activer</th>
+                            <th class="text-center">Account</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($utilisateursObj as $utilisateur): ?>
+                        <?php foreach ($utilisateursObjEnseignant as $utilisateur): ?>
 
                             <?php if ($utilisateur->role === 'enseignant'): ?>
                                 <tr>
                                     <td><?= $utilisateur->nom ?></td>
                                     <td><?= $utilisateur->email ?></td>
                                     <td><?= $utilisateur->role ?></td>
-                                    <td>
-                                        <form action="./actions/activerUtilisateur.php" onchange="this.submit()">
-                                            <select class="form-control" style="width: 105px; margin: 0 auto;">
-                                                <option value="0">Inactive
-                                                </option>
-                                                <option value="1">Active
-                                                </option>
-                                            </select>
-                                        </form>
+                                    <td class="text-center">
+                                        <form action="./actions/activerEnseignant.php" method="post">
+                                            <?php if ($utilisateur->is_active != 0): ?>
+                                                <i class="fas fa-check-circle text-success" style="margin-left: 5px;"></i>
+                                            <?php else: ?>
+                                                <select class="form-control" style="width: 105px; margin: 0 auto;"
+                                                    onchange="this.form.submit()">
+                                                    <option value="0" selected>Inactive</option>
+                                                    <option value="1">Active</option>
+                                                </select>
+                                            </form>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="text-center"><a
                                             href="./utilisateurPanel.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
@@ -145,31 +164,37 @@ session_start();
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th class="text-center">Sussponser</th>
+                            <th class="text-center">banned</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($utilisateursObj as $utilisateur): ?>
+                        <?php foreach ($utilisateursObjEtudiant as $utilisateur): ?>
 
                             <?php if ($utilisateur->role === 'etudiant'): ?>
                                 <tr>
                                     <td><?= $utilisateur->nom ?></td>
                                     <td><?= $utilisateur->email ?></td>
                                     <td><?= $utilisateur->role ?></td>
-                                    <td>
-                                        <form action="./actions/activerUtilisateur.php" onchange="this.submit()">
-                                            <select class="form-control" style="width: 100px; margin: 0 auto;">
-                                                <option value="0">Active
-                                                </option>
-                                                <option value="1">Ban
-                                                </option>
-                                            </select>
-                                        </form>
+                                    <td class="text-center">
+                                        <?php if ($utilisateur->is_baned == 1): ?>
+                                            <form action="./actions/UnbanEtudiant.php" method="post" style="display: inline;">
+                                                <input type="hidden" name="id" value="<?= $utilisateur->id_utilisateur ?>">
+                                                <button type="submit" class="btn btn-success btn-sm">Activate</button>
+                                            </form>
+                                        <?php else: ?>
+                                            <form action="./actions/BanEtudiant.php" method="post" style="display: inline;">
+                                                <input type="hidden" name="id" value="<?= $utilisateur->id_utilisateur ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm">Ban</button>
+                                            </form>
+                                        <?php endif; ?>
                                     </td>
-                                    <td class="text-center"><a
-                                            href="./utilisateurPanel.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
-                                            class="btn btn-primary"><i class="fas fa-trash-alt"></i></a></td>
+                                    <td class="text-center">
+                                        <a href="./utilisateurPanel.php?utilisateurId=<?= $utilisateur->id_utilisateur ?>"
+                                            class="btn btn-primary">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
 
                                 </tr>
                             <?php endif; ?>

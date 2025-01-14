@@ -63,12 +63,38 @@ class Utilisateur_Model
     }
 
 
-    public function getAllUtilisateurs()
+    public function getAllUtilisateursEnseignant()
     {
-        $sql = "SELECT * FROM utilisateurs";
+        $sql = "SELECT * FROM utilisateurs join enseignants on utilisateurs.id_utilisateur = enseignants.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function getAllUtilisateursEtudiant()
+    {
+        $sql = "SELECT * FROM utilisateurs join etudiants on utilisateurs.id_utilisateur = etudiants.id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function deleteUtilisateur($id_utilisateur)
+    {
+        $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = :id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public function activerEnseignant($id_utilisateur)
+    {
+        $sql = "UPDATE enseignants SET is_active = 1 WHERE id_utilisateur = :id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 
 }

@@ -17,5 +17,10 @@ class Enseignant extends Utilisateur
         $this->is_active = $is_active;
     }
 
+    public function __get($attr)
+    {
+        return $this->$attr;
+    }
+
 
 }
