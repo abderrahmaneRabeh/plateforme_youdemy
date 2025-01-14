@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php session_start();
+
+use Models\CourseModel;
+require_once '../models/CourseModel.php';
+
+$CourseModel = new CourseModel();
+
+$courses = $CourseModel->getAllCourses();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,36 +91,36 @@
             </div>
         <?php endif; ?>
         <div class="recent-activity">
-            <h4 class="mb-4">Recent Activity</h4>
+            <h4 class="mb-4">List des Courses</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Action</th>
-                            <th>Date</th>
-                            <th>Status</th>
+                            <th>ID</th>
+                            <th>Titre du cours</th>
+                            <th>Description du cours</th>
+                            <th>Category</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Created new course</td>
-                            <td>2024-01-14</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>Updated profile</td>
-                            <td>2024-01-14</td>
-                            <td><span class="badge badge-info">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Mike Johnson</td>
-                            <td>New reservation</td>
-                            <td>2024-01-13</td>
-                            <td><span class="badge badge-warning">Pending</span></td>
-                        </tr>
+                        <?php foreach ($courses as $course): ?>
+                            <tr>
+                                <td><?= $course['id_cour']; ?></td>
+                                <td><?= $course['titre_cour']; ?></td>
+                                <td><?= substr($course['description_cours'], 0, 50) ?></td>
+                                <td><?= $course['category_name']; ?></td>
+                                <td class="text-center">
+                                    <a href="../actions/SupprimerCours_action.php?id=<?php echo $course['id_cour']; ?>"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
+                                            class="fas fa-trash"></i></a>
+                                    <a href="../pages/ModifierCours__form.php?id=<?php echo $course['id_cour']; ?>"
+                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
                     </tbody>
                 </table>
             </div>

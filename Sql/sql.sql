@@ -12,6 +12,7 @@ CREATE TABLE utilisateurs (
 CREATE TABLE etudiants (
     id_etudiant INT PRIMARY KEY AUTO_INCREMENT,
     id_utilisateur INT,
+    is_baned BOOLEAN DEFAULT 1,
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur) ON DELETE CASCADE
 );
 
@@ -41,9 +42,10 @@ CREATE TABLE cours (
     description_cours TEXT,
     contenu_cours VARCHAR(255),
     category_id INT,
+    is_video BOOLEAN DEFAULT 1,
     id_enseignant INT,
-    FOREIGN KEY (category_id) REFERENCES categories(id_category),
-    FOREIGN KEY (id_enseignant) REFERENCES enseignants(id_enseignant) 
+    FOREIGN KEY (category_id) REFERENCES categories(id_category) ON DELETE CASCADE,
+    FOREIGN KEY (id_enseignant) REFERENCES enseignants(id_enseignant) ON DELETE CASCADE 
     
 );
 
@@ -51,8 +53,8 @@ CREATE TABLE cours_tags (
     id_cour INT,
     id_tag INT,
     PRIMARY KEY (id_cour, id_tag),
-    FOREIGN KEY (id_cour) REFERENCES cours(id_cour),
-    FOREIGN KEY (id_tag) REFERENCES tags(id_tag)
+    FOREIGN KEY (id_cour) REFERENCES cours(id_cour) ON DELETE CASCADE,
+    FOREIGN KEY (id_tag) REFERENCES tags(id_tag) ON DELETE CASCADE
 );
 
 CREATE TABLE inscription (
@@ -61,8 +63,8 @@ CREATE TABLE inscription (
     id_cour INT,
     date_insc TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_suspension BOOLEAN DEFAULT false,
-    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant),
-    FOREIGN KEY (id_cour) REFERENCES cours(id_cour)
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant) ON DELETE CASCADE,
+    FOREIGN KEY (id_cour) REFERENCES cours(id_cour) ON DELETE CASCADE
 );
 
 

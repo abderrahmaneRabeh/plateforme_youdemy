@@ -52,4 +52,21 @@ class CourseModel
         $stmt->execute();
         return $this->db->lastInsertId();
     }
+
+    public function getAllCourses()
+    {
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function deleteCourse($id_cours)
+    {
+        $sql = "DELETE FROM cours WHERE id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }
