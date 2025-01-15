@@ -14,7 +14,7 @@ $CategoryModel = new CategoryModel();
 $TagModel = new TagModel();
 $courseModel = new CourseModel();
 $categories = $CategoryModel->getAllCategories();
-$tags = $TagModel->getAllTags();
+$tagsObj = $TagModel->getAllTags();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -162,14 +162,14 @@ if (isset($_GET['id'])) {
                     <label for="tags">Tags</label><br>
                     <select class="form-control" id="tags" name="tags[]" multiple required>
                         <option value="">Sélectionnez des mots-clés</option>
-                        <?php foreach ($tags as $tag): ?>
-                            <?php if (in_array($tag['id_tag'], array_column($coursesTags, 'id_tag'))): ?>
-                                <option value="<?= htmlspecialchars($tag['id_tag']) ?>" selected>
-                                    <?= htmlspecialchars($tag['tag_name']) ?>
+                        <?php foreach ($tagsObj as $tag): ?>
+                            <?php if (in_array($tag->id_tag, array_column($coursesTags, 'id_tag'))): ?>
+                                <option value="<?= htmlspecialchars($tag->id_tag); ?>" selected>
+                                    <?= htmlspecialchars($tag->tag_name); ?>
                                 </option>
                             <?php else: ?>
-                                <option value="<?= htmlspecialchars($tag['id_tag']) ?>">
-                                    <?= htmlspecialchars($tag['tag_name']) ?>
+                                <option value="<?= htmlspecialchars($tag->id_tag); ?>">
+                                    <?= htmlspecialchars($tag->tag_name); ?>
                                 </option>
                             <?php endif; ?>
                         <?php endforeach; ?>

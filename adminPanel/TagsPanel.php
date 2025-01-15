@@ -4,8 +4,7 @@ use Models\TagModel;
 require_once '../models/TagModel.php';
 $TagModel = new TagModel();
 
-$tags = $TagModel->getAllTags();
-
+$tagsObj = $TagModel->getAllTags();
 
 ?>
 
@@ -106,16 +105,16 @@ $tags = $TagModel->getAllTags();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($tags as $tag): ?>
+                        <?php foreach ($tagsObj as $tag): ?>
                             <tr>
-                                <td><?php echo $tag['id_tag']; ?></td>
-                                <td><?php echo $tag['tag_name']; ?></td>
+                                <td><?php echo $tag->id_tag; ?></td>
+                                <td><?php echo $tag->tag_name; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $tag['id_tag']; ?>"
+                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $tag->id_tag; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
                                             class="fas fa-trash"></i></a>
-                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $tag['id_tag']; ?>"
+                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $tag->id_tag; ?>"
                                         class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>

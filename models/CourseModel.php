@@ -3,12 +3,10 @@
 namespace Models;
 
 use Classes\Database;
-use Classes\DocumentCourseHandler;
-use Classes\VideoCourseHandler;
+use Classes\Course;
 
 require_once '../classes/Database.php';
-require_once '../classes/DocumentCourseHandler.php';
-require_once '../classes/VideoCourseHandler.php';
+require_once '../classes/Course.php';
 
 class CourseModel
 {
@@ -58,7 +56,53 @@ class CourseModel
         $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $courses = $stmt->fetchAll();
+
+        $coursesObj = [];
+
+        foreach ($courses as $course) {
+            $id_cours = $course['id_cour'];
+            $title = $course['titre_cour'];
+            $imgPrincipale_cours = $course['imgPrincipale_cours'];
+            $imgSecondaire_cours = $course['imgSecondaire_cours'];
+            $contenu_cours = $course['contenu_cours'];
+            $description = $course['description_cours'];
+            $category_id = $course['category_name'];
+            $id_enseignant = $course['nom'];
+            $id_utilisateur = $course['id_utilisateur'];
+            $is_video = $course['is_video'];
+
+            $coursesObj[] = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
+        }
+
+        return $coursesObj;
+    }
+    public function getAllEnseignantCourses($id)
+    {
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE en.id_utilisateur = :id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id);
+        $stmt->execute();
+        $courses = $stmt->fetchAll();
+
+        $coursesObj = [];
+
+        foreach ($courses as $course) {
+            $id_cours = $course['id_cour'];
+            $title = $course['titre_cour'];
+            $imgPrincipale_cours = $course['imgPrincipale_cours'];
+            $imgSecondaire_cours = $course['imgSecondaire_cours'];
+            $contenu_cours = $course['contenu_cours'];
+            $description = $course['description_cours'];
+            $category_id = $course['category_name'];
+            $id_enseignant = $course['nom'];
+            $id_utilisateur = $course['id_utilisateur'];
+            $is_video = $course['is_video'];
+
+            $coursesObj[] = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
+        }
+
+        return $coursesObj;
     }
 
     public function getCourseById($id_cours)

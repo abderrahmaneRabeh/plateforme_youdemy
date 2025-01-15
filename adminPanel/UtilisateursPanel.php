@@ -1,45 +1,13 @@
 <?php
 
 namespace Dashboard\Admin;
-use Classes\Enseignant;
-use Classes\Etudiant;
 use Models\Utilisateur_Model;
-
-require_once '../classes/Enseignant.php';
-require_once '../classes/Etudiant.php';
 require_once '../models/Utilisateur_Model.php';
 
 $utilisateurModel = new Utilisateur_Model();
 
-$utilisateursEnseignant = $utilisateurModel->getAllUtilisateursEnseignant();
-$utilisateursEtudiant = $utilisateurModel->getAllUtilisateursEtudiant();
-
-$utilisateursObjEtudiant = [];
-$utilisateursObjEnseignant = [];
-
-foreach ($utilisateursEnseignant as $utilisateur) {
-    $nom = $utilisateur['nom'];
-    $email = $utilisateur['email'];
-    $role = $utilisateur['role'];
-    $id_utilisateur = $utilisateur['id_utilisateur'];
-    $is_active = $utilisateur['is_active'];
-
-    $utilisateursObjEnseignant[] = new Enseignant($nom, $email, '', $is_active, $role, $id_utilisateur);
-}
-
-foreach ($utilisateursEtudiant as $utilisateur) {
-    $nom = $utilisateur['nom'];
-    $email = $utilisateur['email'];
-    $role = $utilisateur['role'];
-    $id_utilisateur = $utilisateur['id_utilisateur'];
-    $is_baned = $utilisateur['is_baned'];
-
-    $utilisateursObjEtudiant[] = new Etudiant($nom, $email, '', $is_baned, $role, $id_utilisateur);
-}
-
-
-
-
+$utilisateursObjEnseignant = $utilisateurModel->getAllUtilisateursEnseignant();
+$utilisateursObjEtudiant = $utilisateurModel->getAllUtilisateursEtudiant();
 
 session_start();
 

@@ -5,8 +5,7 @@ require_once '../models/CourseModel.php';
 
 $CourseModel = new CourseModel();
 
-$courses = $CourseModel->getAllCourses();
-
+$coursesObj = $CourseModel->getAllCourses();
 ?>
 
 <!DOCTYPE html>
@@ -97,15 +96,15 @@ $courses = $CourseModel->getAllCourses();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($courses as $course): ?>
+                        <?php foreach ($coursesObj as $course): ?>
                             <tr>
-                                <td><?= $course['id_cour']; ?></td>
-                                <td><?= $course['titre_cour']; ?></td>
-                                <td><?= substr($course['description_cours'], 0, 50) ?></td>
-                                <td><?= $course['category_name']; ?></td>
-                                <td><?= $course['nom']; ?></td>
+                                <td><?= $course->id_cour; ?></td>
+                                <td><?= $course->titre_cour; ?></td>
+                                <td><?= substr($course->description_cours, 0, 50) ?></td>
+                                <td><?= $course->category_id; ?></td>
+                                <td><?= $course->id_enseignant; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerCours_action.php?id=<?php echo $course['id_cour']; ?>"
+                                    <a href="../actions/SupprimerCours_action.php?id=<?php echo $course->id_cour; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')">
                                         <i class="fas fa-trash"></i>

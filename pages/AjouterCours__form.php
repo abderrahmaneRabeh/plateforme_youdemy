@@ -12,7 +12,7 @@ $CategoryModel = new CategoryModel();
 $TagModel = new TagModel();
 
 $categories = $CategoryModel->getAllCategories();
-$tags = $TagModel->getAllTags();
+$tagsObj = $TagModel->getAllTags();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -129,8 +129,6 @@ $tags = $TagModel->getAllTags();
 
                     </div>
 
-
-
                 </div>
 
                 <div class="form-group">
@@ -149,8 +147,8 @@ $tags = $TagModel->getAllTags();
                     <label for="tags">tags </label><br>
                     <select class="form-control" id="tags" name="tags[]" multiple required>
                         <option value="">Sélectionnez des mots-clés</option>
-                        <?php foreach ($tags as $tag): ?>
-                            <option value="<?php echo $tag['id_tag']; ?>"><?php echo $tag['tag_name']; ?></option>
+                        <?php foreach ($tagsObj as $tag): ?>
+                            <option value="<?php echo $tag->id_tag; ?>"><?php echo $tag->tag_name; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

@@ -2,7 +2,11 @@
 
 namespace Models;
 use Classes\Database;
+use Classes\Etudiant;
+use Classes\Enseignant;
 require_once '../classes/Database.php';
+require_once '../classes/Etudiant.php';
+require_once '../classes/Enseignant.php';
 
 class Utilisateur_Model
 {
@@ -68,7 +72,19 @@ class Utilisateur_Model
         $sql = "SELECT * FROM utilisateurs u join enseignants e on u.id_utilisateur = e.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $utilisateursEnseignant = $stmt->fetchAll();
+
+        foreach ($utilisateursEnseignant as $utilisateur) {
+            $nom = $utilisateur['nom'];
+            $email = $utilisateur['email'];
+            $role = $utilisateur['role'];
+            $id_utilisateur = $utilisateur['id_utilisateur'];
+            $is_active = $utilisateur['is_active'];
+
+            $utilisateursObjEnseignant[] = new Enseignant($nom, $email, '', $is_active, $role, $id_utilisateur);
+        }
+
+        return $utilisateursObjEnseignant;
     }
 
     public function getUtilisateurEnseignantById($id_utilisateur)
@@ -85,7 +101,19 @@ class Utilisateur_Model
         $sql = "SELECT * FROM utilisateurs u join etudiants e on u.id_utilisateur = e.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $utilisateursEtudiant = $stmt->fetchAll();
+
+        foreach ($utilisateursEtudiant as $utilisateur) {
+            $nom = $utilisateur['nom'];
+            $email = $utilisateur['email'];
+            $role = $utilisateur['role'];
+            $id_utilisateur = $utilisateur['id_utilisateur'];
+            $is_baned = $utilisateur['is_baned'];
+
+            $utilisateursObjEtudiant[] = new Etudiant($nom, $email, '', $is_baned, $role, $id_utilisateur);
+        }
+
+        return $utilisateursObjEtudiant;
     }
 
     public function deleteUtilisateur($id_utilisateur)

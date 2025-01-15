@@ -7,7 +7,8 @@ session_start();
 
 $TagModel = new TagModel();
 if (isset($_GET['id'])) {
-    $tag = $TagModel->getTagById($_GET['id']);
+    $tagObj = $TagModel->getTagById($_GET['id']);
+
 }
 ?>
 
@@ -166,11 +167,11 @@ if (isset($_GET['id'])) {
             </div>
 
             <form id="courseForm" method="POST" action="../actions/ModifierTag_action.php">
-                <input type="hidden" name="id_tag" value="<?= $tag['id_tag'] ?>">
+                <input type="hidden" name="id_tag" value="<?= $tagObj->id_tag ?>">
                 <div id="group_inputs">
                     <div class="tag-input-group animation-container">
                         <label class="tag-label" for="tag_1">nom de Tag</label>
-                        <input type="text" value="<?= $tag['tag_name'] ?>" class="form-control" id="tag_1"
+                        <input type="text" value="<?= $tagObj->tag_name ?>" class="form-control" id="tag_1"
                             name="tag_name" required>
                     </div>
                 </div>

@@ -3,6 +3,9 @@
 namespace Models;
 
 use Classes\Database;
+use Classes\Tag;
+
+require_once '../classes/Tag.php';
 require_once '../classes/Database.php';
 
 
@@ -21,7 +24,16 @@ class TagModel
         $sql = "SELECT * FROM tags";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $tags = $stmt->fetchAll();
+
+        foreach ($tags as $tag) {
+            $id_tag = $tag['id_tag'];
+            $tag_name = $tag['tag_name'];
+
+            $tagsObj[] = new Tag($tag_name, $id_tag);
+        }
+
+        return $tagsObj;
     }
 
     public function getTagById($id_tag)
@@ -30,7 +42,11 @@ class TagModel
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_tag', $id_tag);
         $stmt->execute();
-        return $stmt->fetch();
+        $tag = $stmt->fetch();
+
+        $tagObj = new Tag($tag['tag_name'], $tag['id_tag']);
+
+        return $tagObj;
     }
     public function Ajouter_Tag_Courses($tag, $id_cours)
     {
