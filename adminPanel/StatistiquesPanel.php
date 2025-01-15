@@ -39,7 +39,7 @@
             <a href="./UtilisateursPanel.php" class="menu-item"><i class="fas fa-users"></i>Utilisateurs</a>
             <a href="./CoursesPanel.php" class="menu-item"><i class="fas fa-graduation-cap"></i>Cours</a>
             <a href="./TagsPanel.php" class="menu-item"><i class="fas fa-tags"></i>Tags</a>
-            <a href="#" class="menu-item"><i class="fas fa-list"></i>Categories</a>
+            <a href="./CategoryPanel.php" class="menu-item"><i class="fas fa-list"></i>Categories</a>
             <a href="#" class="menu-item"><i class="fas fa-calendar-check"></i>Réservations</a>
         </div>
     </div>

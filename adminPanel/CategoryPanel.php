@@ -1,11 +1,11 @@
 <?php session_start();
 
-use Models\CourseModel;
-require_once '../models/CourseModel.php';
+use Models\CategoryModel;
+require_once '../models/CategoryModel.php';
+$CategoryModel = new CategoryModel();
 
-$CourseModel = new CourseModel();
+$Categories = $CategoryModel->getAllCategories();
 
-$courses = $CourseModel->getAllCourses();
 
 ?>
 
@@ -44,9 +44,9 @@ $courses = $CourseModel->getAllCourses();
         <div class="sidebar-menu">
             <a href="./StatistiquesPanel.php" class="menu-item"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
             <a href="./UtilisateursPanel.php" class="menu-item"><i class="fas fa-users"></i>Utilisateurs</a>
-            <a href="./CoursesPanel.php" class="menu-item active"><i class="fas fa-graduation-cap"></i>Cours</a>
+            <a href="./CoursesPanel.php" class="menu-item"><i class="fas fa-graduation-cap"></i>Cours</a>
             <a href="./TagsPanel.php" class="menu-item"><i class="fas fa-tags"></i>Tags</a>
-            <a href="./CategoryPanel.php" class="menu-item"><i class="fas fa-list"></i>Categories</a>
+            <a href="./CategoryPanel.php" class="menu-item active"><i class="fas fa-list"></i>Categories</a>
             <a href="#" class="menu-item"><i class="fas fa-calendar-check"></i>Réservations</a>
         </div>
     </div>
@@ -70,6 +70,18 @@ $courses = $CourseModel->getAllCourses();
                     class="
                 fas fa-sign-out-alt" style="color: white;"></i></a>
         </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
+                <span class="text-muted">Gérez vos Categories efficacement</span>
+                <a class="btn btn-primary text-white" href="../pages/AjouterCategory__form.php">
+                    <i class="fas fa-plus-circle"></i> Ajouter un nouveau category
+                </a>
+            </div>
+
+        </div>
+
         <!-- Recent Activity -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success" role="alert">
@@ -83,37 +95,31 @@ $courses = $CourseModel->getAllCourses();
             </div>
         <?php endif; ?>
         <div class="recent-activity">
-            <h4 class="mb-4">List des Courses</h4>
+            <h4 class="mb-4">List des Category</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Titre du cours</th>
-                            <th>Description du cours</th>
-                            <th>Category</th>
-                            <th>Enseignant</th>
+                            <th>Nom</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($courses as $course): ?>
+                        <?php foreach ($Categories as $Category): ?>
                             <tr>
-                                <td><?= $course['id_cour']; ?></td>
-                                <td><?= $course['titre_cour']; ?></td>
-                                <td><?= substr($course['description_cours'], 0, 50) ?></td>
-                                <td><?= $course['category_name']; ?></td>
-                                <td><?= $course['nom']; ?></td>
+                                <td><?php echo $Category['id_category']; ?></td>
+                                <td><?php echo $Category['category_name']; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerCours_action.php?id=<?php echo $course['id_cour']; ?>"
+                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $Category['id_category']; ?>"
                                         class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
+                                            class="fas fa-trash"></i></a>
+                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $Category['id_category']; ?>"
+                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
             </div>
