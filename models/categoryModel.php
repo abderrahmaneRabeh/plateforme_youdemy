@@ -51,4 +51,25 @@ class CategoryModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function GetCategoryById($id_category)
+    {
+        $sql = "SELECT * FROM categories WHERE id_category = :id_category";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->execute();
+        $category = $stmt->fetch();
+        $categoryObj = new category($category['id_category'], $category['category_name']);
+        return $categoryObj;
+    }
+
+    public function updateCategory($id_category, $category_name)
+    {
+        $sql = "UPDATE categories SET category_name = :category_name WHERE id_category = :id_category";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->bindValue(':category_name', $category_name);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }
