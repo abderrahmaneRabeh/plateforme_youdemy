@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+
+session_start();
+
+require_once '../middlewares/SeConnecterRedirect.php';
+seConnecterRedirect();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +42,20 @@
                 </a>
                 <p class="text-muted my-3">Bienvenue ! Veuillez vous connecter &agrave; votre compte.</p>
             </div>
+            <?php if (isset($_SESSION['error_access'])): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION['error_access'];
+                    unset($_SESSION['error_access']); ?>
+                </div>
+            <?php endif; ?>
+
             <?php if (isset($_SESSION['error_enseignant'])): ?>
                 <div class="alert alert-danger" role="alert">
                     <?php echo $_SESSION['error_enseignant'];
                     unset($_SESSION['error_enseignant']); ?>
                 </div>
             <?php endif; ?>
+
             <form id="loginForm" method="post" action="../actions/SeConnecter_action.php">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail"

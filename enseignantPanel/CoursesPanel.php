@@ -2,6 +2,9 @@
 
 use Models\CourseModel;
 require_once '../models/CourseModel.php';
+require_once '../middlewares/AccessEnseignant.php';
+
+AccessEnseignant();
 
 $CourseModel = new CourseModel();
 

@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+
+session_start();
+
+require_once '../middlewares/SeConnecterRedirect.php';
+seConnecterRedirect();
+?>
 
 <!DOCTYPE html>
 <html lang="en">

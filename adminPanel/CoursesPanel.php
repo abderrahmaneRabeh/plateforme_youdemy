@@ -2,8 +2,11 @@
 
 use Models\CourseModel;
 require_once '../models/CourseModel.php';
+require_once '../middlewares/AdminAccess.php';
 
 $CourseModel = new CourseModel();
+AdminAcess();
+
 
 $coursesObj = $CourseModel->getAllCourses();
 ?>

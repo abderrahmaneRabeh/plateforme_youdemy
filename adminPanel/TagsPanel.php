@@ -2,9 +2,11 @@
 
 use Models\TagModel;
 require_once '../models/TagModel.php';
+require_once '../middlewares/AdminAccess.php';
 $TagModel = new TagModel();
 
 $tagsObj = $TagModel->getAllTags();
+AdminAcess();
 
 ?>
 

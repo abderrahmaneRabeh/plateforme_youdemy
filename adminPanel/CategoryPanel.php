@@ -2,10 +2,12 @@
 
 use Models\CategoryModel;
 require_once '../models/CategoryModel.php';
-$CategoryModel = new CategoryModel();
+require_once '../middlewares/AdminAccess.php';
 
+$CategoryModel = new CategoryModel();
 $categoryObj = $CategoryModel->getAllCategories();
 
+AdminAcess();
 
 ?>
 

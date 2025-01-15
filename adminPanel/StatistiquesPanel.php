@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+
+session_start();
+require_once '../middlewares/AdminAccess.php';
+AdminAcess();
+
+?>
 
 
 <!DOCTYPE html>
