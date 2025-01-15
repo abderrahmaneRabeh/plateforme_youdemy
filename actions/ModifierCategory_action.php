@@ -3,8 +3,8 @@
 namespace Actions;
 
 use Models\CategoryModel;
-require_once '../models/CategoryModel.php';
 
+require_once '../models/CategoryModel.php';
 session_start();
 
 
