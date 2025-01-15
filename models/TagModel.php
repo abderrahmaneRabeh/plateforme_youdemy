@@ -23,6 +23,15 @@ class TagModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function getTagById($id_tag)
+    {
+        $sql = "SELECT * FROM tags WHERE id_tag = :id_tag";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_tag', $id_tag);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
     public function Ajouter_Tag_Courses($tag, $id_cours)
     {
         $sql = "INSERT INTO cours_tags(id_cour, id_tag) VALUES (:id_cour, :id_tag)";
@@ -56,6 +65,25 @@ class TagModel
     {
         $sql = "INSERT INTO tags (tag_name) VALUES (:tag_name)";
         $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':tag_name', $tag);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public function deleteTag($id_tag)
+    {
+        $sql = "DELETE FROM tags WHERE id_tag = :id_tag";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_tag', $id_tag);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    public function updateTag($id_tag, $tag)
+    {
+        $sql = "UPDATE tags SET tag_name = :tag_name WHERE id_tag = :id_tag";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_tag', $id_tag);
         $stmt->bindValue(':tag_name', $tag);
         $stmt->execute();
         return $stmt->rowCount();

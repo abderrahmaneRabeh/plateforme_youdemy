@@ -111,11 +111,11 @@ $tags = $TagModel->getAllTags();
                                 <td><?php echo $tag['id_tag']; ?></td>
                                 <td><?php echo $tag['tag_name']; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerCours_action.php?id=<?php echo $course['id_cour']; ?>"
+                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $tag['id_tag']; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
                                             class="fas fa-trash"></i></a>
-                                    <a href="../pages/ModifierCours__form.php?id=<?php echo $course['id_cour']; ?>"
+                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $tag['id_tag']; ?>"
                                         class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>

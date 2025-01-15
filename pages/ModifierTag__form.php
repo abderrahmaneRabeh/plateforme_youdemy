@@ -1,9 +1,22 @@
+<?php
+
+use Models\TagModel;
+require_once '../models/TagModel.php';
+
+session_start();
+
+$TagModel = new TagModel();
+if (isset($_GET['id'])) {
+    $tag = $TagModel->getTagById($_GET['id']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>YouDemy - Ajouter des Tags</title>
+    <title>YouDemy - Modifier des Tags</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -149,24 +162,22 @@
                 <a href="../adminPanel/TagsPanel.php" class="btn btn-outline-primary">
                     <i class="fas fa-arrow-left me-2"></i>Retour au tableau de bord
                 </a>
-                <h3 class="page-title mb-0">Ajouter de nouveaux tags</h3>
+                <h3 class="page-title mb-0">Mofifier un tag</h3>
             </div>
 
-            <form id="courseForm" method="POST" action="../actions/AjouterTag_action.php">
+            <form id="courseForm" method="POST" action="../actions/ModifierTag_action.php">
+                <input type="hidden" name="id_tag" value="<?= $tag['id_tag'] ?>">
                 <div id="group_inputs">
                     <div class="tag-input-group animation-container">
-                        <label class="tag-label" for="tag_1">Tag 1</label>
-                        <input type="text" class="form-control" id="tag_1" name="tag_name[]" required>
+                        <label class="tag-label" for="tag_1">nom de Tag</label>
+                        <input type="text" value="<?= $tag['tag_name'] ?>" class="form-control" id="tag_1"
+                            name="tag_name" required>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mt-4">
-                    <button type="button" id="AjouterTag" class="btn btn-outline-primary add-tag-btn">
-                        <i class="fas fa-plus"></i>
-                        <span>Ajouter un autre tag</span>
-                    </button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-2"></i>Enregistrer les Tags
+                        <i class="fas fa-save me-2"></i>Modifier le tag
                     </button>
                 </div>
             </form>
@@ -175,44 +186,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        let groupInputs = document.getElementById('group_inputs');
-        let addTagBtn = document.getElementById('AjouterTag');
-        let tagCount = 2;
-
-        function deleteInput(element) {
-            element.closest('.tag-input-group').style.opacity = '0';
-            element.closest('.tag-input-group').style.transform = 'translateX(20px)';
-
-            setTimeout(() => {
-                element.closest('.tag-input-group').remove();
-                tagCount--;
-                updateTagLabels();
-            }, 300);
-        }
-
-        function updateTagLabels() {
-            const tagGroups = groupInputs.querySelectorAll('.tag-input-group');
-            tagGroups.forEach((group, index) => {
-                const label = group.querySelector('label');
-                label.textContent = `Tag ${index + 1}`;
-            });
-        }
-
-        addTagBtn.addEventListener("click", function () {
-            const newInput = document.createElement('div');
-            newInput.className = 'tag-input-group animation-container';
-            newInput.innerHTML = `
-                <label class="tag-label" for="tag_${tagCount}">Tag ${tagCount}</label>
-                <input type="text" class="form-control" id="tag_${tagCount}" name="tag_name[]" required>
-                <button type="button" class="btn-remove" onclick="deleteInput(this)">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            groupInputs.appendChild(newInput);
-            tagCount++;
-        });
-    </script>
 </body>
 
 </html>

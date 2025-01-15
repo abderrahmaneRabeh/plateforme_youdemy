@@ -6,6 +6,8 @@ use Models\TagModel;
 require_once '../models/CategoryModel.php';
 require_once '../models/TagModel.php';
 
+session_start();
+
 $CategoryModel = new CategoryModel();
 $TagModel = new TagModel();
 
