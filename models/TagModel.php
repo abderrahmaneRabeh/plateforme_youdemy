@@ -50,4 +50,14 @@ class TagModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+
+    public function createNewTag($tag)
+    {
+        $sql = "INSERT INTO tags (tag_name) VALUES (:tag_name)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':tag_name', $tag);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }

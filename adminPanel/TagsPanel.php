@@ -1,11 +1,11 @@
 <?php session_start();
 
-use Models\CourseModel;
-require_once '../models/CourseModel.php';
+use Models\TagModel;
+require_once '../models/TagModel.php';
+$TagModel = new TagModel();
 
-$CourseModel = new CourseModel();
+$tags = $TagModel->getAllTags();
 
-$courses = $CourseModel->getAllCourses();
 
 ?>
 
@@ -70,6 +70,18 @@ $courses = $CourseModel->getAllCourses();
                     class="
                 fas fa-sign-out-alt" style="color: white;"></i></a>
         </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
+                <span class="text-muted">Gérez vos Tags efficacement</span>
+                <a class="btn btn-primary text-white" href="../pages/AjouterTag__form.php">
+                    <i class="fas fa-plus-circle"></i> Ajouter un nouveau Tag
+                </a>
+            </div>
+
+        </div>
+
         <!-- Recent Activity -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success" role="alert">
@@ -83,37 +95,31 @@ $courses = $CourseModel->getAllCourses();
             </div>
         <?php endif; ?>
         <div class="recent-activity">
-            <h4 class="mb-4">List des Courses</h4>
+            <h4 class="mb-4">List des Tags</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Titre du cours</th>
-                            <th>Description du cours</th>
-                            <th>Category</th>
-                            <th>Enseignant</th>
+                            <th>Nom</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($courses as $course): ?>
+                        <?php foreach ($tags as $tag): ?>
                             <tr>
-                                <td><?= $course['id_cour']; ?></td>
-                                <td><?= $course['titre_cour']; ?></td>
-                                <td><?= substr($course['description_cours'], 0, 50) ?></td>
-                                <td><?= $course['category_name']; ?></td>
-                                <td><?= $course['nom']; ?></td>
+                                <td><?php echo $tag['id_tag']; ?></td>
+                                <td><?php echo $tag['tag_name']; ?></td>
                                 <td class="text-center">
                                     <a href="../actions/SupprimerCours_action.php?id=<?php echo $course['id_cour']; ?>"
                                         class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                        onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
+                                            class="fas fa-trash"></i></a>
+                                    <a href="../pages/ModifierCours__form.php?id=<?php echo $course['id_cour']; ?>"
+                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
             </div>
