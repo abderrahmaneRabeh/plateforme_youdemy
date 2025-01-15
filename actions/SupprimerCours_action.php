@@ -7,6 +7,12 @@ require_once '../models/CourseModel.php';
 
 session_start();
 
+if ($_SESSION['utilisateur']['role'] != 'enseignant') {
+    $redirect = '../adminPanel/CoursesPanel.php';
+} else {
+    $redirect = '../enseignantPanel/CoursesPanel.php';
+}
+
 
 if (isset($_GET['id'])) {
 
@@ -18,11 +24,11 @@ if (isset($_GET['id'])) {
 
     if ($result) {
         $_SESSION['success'] = "Le cours a été supprimé avec succès !";
-        header('Location: ../enseignantPanel/CoursesPanel.php');
+        header("Location: $redirect");
         exit();
     } else {
         $_SESSION['error'] = "Le cours n'a pas pu être supprimé.";
-        header('Location: ../enseignantPanel/CoursesPanel.php');
+        header("Location: $redirect");
         exit();
     }
 

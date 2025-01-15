@@ -55,7 +55,7 @@ class CourseModel
 
     public function getAllCourses()
     {
-        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category";
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
