@@ -60,7 +60,7 @@ class TagModel
 
     public function getCoursTags($id_cours)
     {
-        $sql = "SELECT * FROM cours_tags WHERE id_cour = :id_cour";
+        $sql = "SELECT * FROM cours_tags join tags on cours_tags.id_tag = tags.id_tag WHERE id_cour = :id_cour";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_cour', $id_cours);
         $stmt->execute();

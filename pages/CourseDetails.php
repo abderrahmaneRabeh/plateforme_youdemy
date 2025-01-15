@@ -1,3 +1,28 @@
+<?php
+use Models\AfficherListeCoursModel;
+use Models\TagModel;
+require_once '../models/AfficherListeCoursModel.php';
+require_once '../models/TagModel.php';
+
+session_start();
+
+$courseModel = new AfficherListeCoursModel();
+$TagModel = new TagModel();
+if (isset($_GET['id'])) {
+
+    $id = $_GET['id'];
+
+    $course = $courseModel->AfficherCoursDetaille($id);
+    $courseTags = $TagModel->getCoursTags($id);
+
+    // echo "<pre>";
+    // print_r(value: $course);
+    // echo "</pre>";
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +86,7 @@
 
 <body>
     <!-- Topbar Start -->
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid bg-dark" id="topPage">
         <div class="row py-2 px-lg-5">
             <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center text-white">
@@ -116,11 +141,11 @@
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom">
         <div class="container text-center">
-            <h1 class="text-white display-1">Course Details</h1>
+            <h1 class="text-white display-4">Détail du cours</h1>
             <div class="d-inline-flex text-white mb-5">
-                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Accueil</a></p>
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Course Details</p>
+                <p class="m-0 text-uppercase">Détail du cours</p>
             </div>
         </div>
     </div>
@@ -135,43 +160,39 @@
                     <div class="mb-5">
                         <!-- Course Title -->
                         <div class="section-title position-relative mb-5">
-                            <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course ID:
-                                #12345</h6>
-                            <h1 class="display-5">Master Web Development with Full Stack Technologies</h1>
+                            <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">ID du cours
+                                :
+                                #<?= $course->id_cour ?></h6>
+                            <h1 class="display-5"><?= $course->titre_cour ?></h1>
                         </div>
 
                         <!-- Course Images -->
                         <div class="position-relative mb-5">
-                            <img class="img-fluid rounded w-100 mb-4" src="../assets/img/courses-1.jpg"
-                                alt="Main Course Image" style="height: 500px; object-fit: cover;">
+                            <img class="img-fluid rounded w-100 mb-4" src="<?= $course->imgPrincipale_cours ?>"
+                                alt="Image principale du cours" style="height: 500px; object-fit: cover;">
                         </div>
 
                         <!-- Course Description -->
-                        <h2 class="mb-4">Course Description</h2>
-                        <p class="mb-5">This comprehensive course will take you from beginner to professional in web
-                            development. You'll learn everything from HTML and CSS basics to advanced JavaScript
-                            frameworks and backend development with Node.js.</p>
+                        <h2 class="mb-4">Description du cours</h2>
+                        <p class="mb-5"><?= $course->description_cours ?></p>
 
                         <div class="row mb-4">
-                            <div class="col-md-6">
-                                <img class="img-fluid rounded w-100" src="../assets/img/courses-2.jpg"
-                                    alt="Course Image 1">
+                            <div class="col-md-12">
+                                <img style="height: 500px; object-fit: cover;" class="img-fluid rounded w-100"
+                                    src="../assets/img/courses-2.jpg" alt="Image du cours 1">
                             </div>
-                            <div class="col-md-6">
-                                <img class="img-fluid rounded w-100" src="../assets/img/courses-3.jpg"
-                                    alt="Course Image 2">
-                            </div>
+
                         </div>
 
                         <!-- Course Content -->
-                        <h2 class="mb-4">Course Content</h2>
+                        <h2 class="mb-4">Contenu du cours</h2>
                         <div class="accordion" id="courseContent">
                             <div class="card border-0 mb-2">
                                 <div class="card-header p-0 border bg-secondary">
                                     <h2 class="mb-0">
                                         <button class="btn btn-block py-3 text-white text-left" type="button"
                                             data-toggle="collapse" data-target="#content1">
-                                            <i class="fa fa-video mr-3"></i>Module 1: Introduction
+                                            <i class="fa fa-video mr-3"></i>Module 1 : Introduction
                                             <span class="float-right"><i class="fa fa-chevron-down"></i></span>
                                         </button>
                                     </h2>
@@ -180,12 +201,12 @@
                                     <div class="card-body bg-light">
                                         <a href="#" class="d-flex align-items-center text-dark mb-3">
                                             <i class="fa fa-play-circle text-primary mr-3"></i>
-                                            <span>1.1 Course Overview</span>
+                                            <span>1.1 Vue d'ensemble du cours</span>
                                             <span class="ml-auto">30 min</span>
                                         </a>
                                         <a href="#" class="d-flex align-items-center text-dark mb-3">
                                             <i class="fa fa-file-pdf text-primary mr-3"></i>
-                                            <span>1.2 Course Materials</span>
+                                            <span>1.2 Matériaux du cours</span>
                                             <span class="ml-auto">PDF</span>
                                         </a>
                                     </div>
@@ -196,7 +217,7 @@
                                     <h2 class="mb-0">
                                         <button class="btn btn-block py-3 text-white text-left" type="button"
                                             data-toggle="collapse" data-target="#content2">
-                                            <i class="fa fa-video mr-3"></i>Module 2: Advanced Topics
+                                            <i class="fa fa-video mr-3"></i>Module 2 : Sujects avancés
                                             <span class="float-right"><i class="fa fa-chevron-down"></i></span>
                                         </button>
                                     </h2>
@@ -205,7 +226,7 @@
                                     <div class="card-body bg-light">
                                         <a href="#" class="d-flex align-items-center text-dark mb-3">
                                             <i class="fa fa-play-circle text-primary mr-3"></i>
-                                            <span>2.1 Advanced Concepts</span>
+                                            <span>2.1 Concepts avancés</span>
                                             <span class="ml-auto">45 min</span>
                                         </a>
                                     </div>
@@ -219,37 +240,44 @@
                 <div class="col-lg-4 mt-5 mt-lg-0">
                     <!-- Course Features -->
                     <div class="bg-primary mb-5 py-3">
-                        <h3 class="text-white py-3 px-4 m-0">Course Features</h3>
+                        <h3 class="text-white py-3 px-4 m-0">Caractéristiques du cours</h3>
                         <div class="d-flex justify-content-between border-bottom px-4 py-3">
-                            <h6 class="text-white my-auto">Category</h6>
-                            <h6 class="text-white my-auto">Development</h6>
+                            <h6 class="text-white my-auto">Catégorie</h6>
+                            <h6 class="text-white my-auto"><?= $course->category_id ?></h6>
                         </div>
                         <div class="d-flex justify-content-between border-bottom px-4 py-3">
-                            <h6 class="text-white my-auto">Instructor</h6>
-                            <h6 class="text-white my-auto">John Doe</h6>
+                            <h6 class="text-white my-auto">Enseignant</h6>
+                            <h6 class="text-white my-auto"><?= $course->id_enseignant ?></h6>
                         </div>
                         <div class="d-flex justify-content-between border-bottom px-4 py-3">
-                            <h6 class="text-white my-auto">Course ID</h6>
-                            <h6 class="text-white my-auto">#12345</h6>
+                            <h6 class="text-white my-auto">Identifiant du cours</h6>
+                            <h6 class="text-white my-auto">#<?= $course->id_cour ?></h6>
                         </div>
                         <div class="py-3 px-4">
-                            <a class="btn btn-block btn-secondary py-3 px-5" href="">Enroll Now</a>
+                            <a class="btn btn-block btn-secondary py-3 px-5" href="">Inscrivez-vous</a>
                         </div>
                     </div>
 
                     <!-- Instructor Info -->
                     <div class="bg-secondary p-4 mb-5 instructor-card">
-                        <h3 class="text-white mb-4">Course Instructor</h3>
+                        <h3 class="text-white mb-4">Enseignant du cours</h3>
                         <div class="d-flex align-items-center mb-4">
-                            <img class="rounded-circle" src="/api/placeholder/70/70" style="width: 70px; height: 70px;"
-                                alt="Instructor">
                             <div class="ml-4">
-                                <h4 class="text-white">John Doe</h4>
-                                <p class="m-0 text-white-50">Web Developer</p>
+                                <h4 class="text-white"><?= $course->id_enseignant ?></h4>
+                                <p class="m-0 text-white-50">Expert en développement web et enseignement</p>
                             </div>
                         </div>
-                        <p class="text-white">Expert instructor with over 10 years of experience in web development and
-                            teaching.</p>
+                        <p class="text-white">Enseignant expert avec plus de 10 ans d'expérience dans le développement
+                            web
+                            et l'enseignement.</p>
+                    </div>
+                    <div class="bg-secondary p-4 mb-5">
+                        <h3 class="text-white mb-4">Mots-clés</h3>
+                        <div class="d-flex flex-wrap">
+                            <?php foreach ($courseTags as $tag): ?>
+                                <a href="" class="btn btn-sm btn-light m-1"><?= $tag['tag_name'] ?></a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -302,11 +330,6 @@
         </div>
     </div>
     <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i
-            class="fa fa-angle-double-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

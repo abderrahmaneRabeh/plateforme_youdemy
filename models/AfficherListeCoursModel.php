@@ -55,5 +55,28 @@ class AfficherListeCoursModel extends AfficherCours
         return $coursesObj;
 
     }
-}
 
+    public function AfficherCoursDetaille($id_cours)
+    {
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur WHERE co.id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cours);
+        $stmt->execute();
+        $course = $stmt->fetch();
+
+        $courseObj = new Course(
+            $course['titre_cour'],
+            $course['imgPrincipale_cours'],
+            $course['imgSecondaire_cours'],
+            $course['description_cours'],
+            $course['contenu_cours'],
+            $course['category_name'],
+            $course['nom'],
+            $course['is_video'],
+            $course['id_cour']
+        );
+        return $courseObj;
+
+
+    }
+}
