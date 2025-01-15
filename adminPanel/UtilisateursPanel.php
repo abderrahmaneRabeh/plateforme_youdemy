@@ -2,6 +2,7 @@
 
 namespace Dashboard\Admin;
 use Models\Utilisateur_Model;
+require_once '../middlewares/AdminAccess.php';
 require_once '../models/Utilisateur_Model.php';
 
 $utilisateurModel = new Utilisateur_Model();
@@ -10,6 +11,7 @@ $utilisateursObjEnseignant = $utilisateurModel->getAllUtilisateursEnseignant();
 $utilisateursObjEtudiant = $utilisateurModel->getAllUtilisateursEtudiant();
 
 session_start();
+AdminAcess();
 
 ?>
 
