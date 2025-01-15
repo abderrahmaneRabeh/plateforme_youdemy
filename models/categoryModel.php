@@ -42,4 +42,13 @@ class CategoryModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function deleteCategory($id_category)
+    {
+        $sql = "DELETE FROM categories WHERE id_category = :id_category";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_category', $id_category);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }
