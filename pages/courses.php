@@ -96,20 +96,31 @@ $listCoursObj = $courseModel->afficherCours(1);
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="../index.php" class="nav-item nav-link">Accueil</a>
+                    <a href="../index.php" class="nav-item nav-link ">Accueil</a>
                     <a href="./courses.php" class="nav-item nav-link active">Cours</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
-                            <a href="detail.html" class="dropdown-item">Détail du cours</a>
-                            <a href="feature.html" class="dropdown-item">Nos fonctionnalités</a>
+                            <a href="detail.html" class="dropdown-item">D&eacute;tail du cours</a>
+                            <a href="feature.html" class="dropdown-item">Nos fonctionnalit&eacute;s</a>
                             <a href="team.html" class="dropdown-item">Instructeurs</a>
-                            <a href="testimonial.html" class="dropdown-item">Témoignage</a>
+                            <a href="testimonial.html" class="dropdown-item">T&eacute;moignages</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="./seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                <?php if (isset($_SESSION['utilisateur'])): ?>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle"
+                            style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
+                            data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
+                        <div class="dropdown-menu m-0" style="border-radius: 5px;">
+                            <a href="mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <a href="../actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                <?php endif; ?>
             </div>
         </nav>
     </div>

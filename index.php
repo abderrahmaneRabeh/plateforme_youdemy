@@ -86,7 +86,6 @@
                             <a href="testimonial.html" class="dropdown-item">T&eacute;moignages</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
                 <?php if (isset($_SESSION['utilisateur'])): ?>
                     <div class="nav-item dropdown">
