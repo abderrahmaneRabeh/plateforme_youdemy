@@ -20,6 +20,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $courseObj = $courseModel->getCourseById($id);
     $coursesTags = $TagModel->getCoursTags($id);
+
 }
 
 ?><!DOCTYPE html>

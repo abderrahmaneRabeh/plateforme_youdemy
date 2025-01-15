@@ -123,9 +123,6 @@ class CourseModel
         $is_video = $course['is_video'];
 
         $courseObj = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
-        // echo "<pre>";
-        // print_r(value: $courseObj);
-        // echo "</pre>";
 
         return $courseObj;
     }
