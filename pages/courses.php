@@ -146,7 +146,8 @@ $listCoursObj = $courseModel->afficherCours(1);
             <div class="row">
                 <?php foreach ($listCoursObj as $cours): ?>
                     <div class="col-lg-4 col-md-6 pb-4">
-                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
+                            href="./CourseDetails.php?id=<?= $cours->id_cour ?>">
                             <img class="img-fluid" src="<?= $cours->imgPrincipale_cours ?>" alt="<?= $cours->titre_cour ?>">
                             <div class="courses-text">
                                 <h4 class="text-center text-white px-3"><?= $cours->titre_cour ?></h4>
