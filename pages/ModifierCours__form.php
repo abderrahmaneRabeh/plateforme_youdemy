@@ -13,12 +13,12 @@ session_start();
 $CategoryModel = new CategoryModel();
 $TagModel = new TagModel();
 $courseModel = new CourseModel();
-$categories = $CategoryModel->getAllCategories();
+$categoryObj = $CategoryModel->getAllCategories();
 $tagsObj = $TagModel->getAllTags();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $course = $courseModel->getCourseById($id);
+    $courseObj = $courseModel->getCourseById($id);
     $coursesTags = $TagModel->getCoursTags($id);
 }
 
@@ -95,11 +95,11 @@ if (isset($_GET['id'])) {
             <hr>
             <form id="courseForm" method="POST" action="../actions/ModifierCours_action.php">
 
-                <input type="hidden" name="id_cour" value="<?= $course['id_cour'] ?>">
-                <input type="hidden" name="is_video" value="<?= $course['is_video'] ?>">
+                <input type="hidden" name="id_cour" value="<?= $courseObj->id_cour ?>">
+                <input type="hidden" name="is_video" value="<?= $courseObj->is_video ?>">
                 <div class="form-group">
                     <label for="titre_cour">Titre du cours</label>
-                    <input type="text" value="<?= $course['titre_cour'] ?>" class="form-control" id="titre_cour"
+                    <input type="text" value="<?= $courseObj->titre_cour ?>" class="form-control" id="titre_cour"
                         name="titre_cour" required>
                 </div>
 
@@ -107,7 +107,7 @@ if (isset($_GET['id'])) {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="imgPrincipale_cours">URL de l'image principale</label>
-                            <input type="url" value="<?= $course['imgPrincipale_cours'] ?>" class="form-control"
+                            <input type="url" value="<?= $courseObj->imgPrincipale_cours ?>" class="form-control"
                                 id="imgPrincipale_cours" name="imgPrincipale_cours" required>
                             <img id="mainPreview" class="preview-image" src="/api/placeholder/200/200"
                                 alt="Aperçu de l'image principale">
@@ -116,7 +116,7 @@ if (isset($_GET['id'])) {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="imgSecondaire_cours">URL de l'image secondaire</label>
-                            <input type="url" value="<?= $course['imgSecondaire_cours'] ?>" class="form-control"
+                            <input type="url" value="<?= $courseObj->imgSecondaire_cours ?>" class="form-control"
                                 id="imgSecondaire_cours" name="imgSecondaire_cours" required>
                             <img id="secondaryPreview" class="preview-image" src="/api/placeholder/200/200"
                                 alt="Aperçu de l'image secondaire">
@@ -127,15 +127,15 @@ if (isset($_GET['id'])) {
                 <div class="form-group">
                     <label for="description_cours">Description du cours</label>
                     <textarea class="form-control" id="description_cours" name="description_cours" rows="4"
-                        required><?= $course['description_cours'] ?></textarea>
+                        required><?= $courseObj->description_cours ?></textarea>
                 </div>
 
                 <div class="form-group" id="contenu_cours_group">
-                    <?php if ($course['is_video']): ?>
-                        <input type="url" value="<?= $course['contenu_cours'] ?>" class="form-control mt-3"
+                    <?php if ($courseObj->is_video): ?>
+                        <input type="url" value="<?= $courseObj->contenu_cours ?>" class="form-control mt-3"
                             id="contenu_cours" name="contenu_cours_video" placeholder="URL de la vidéo" required>
                     <?php else: ?>
-                        <input type="url" class="form-control mt-3" value="<?= $course['contenu_cours'] ?>"
+                        <input type="url" class="form-control mt-3" value="<?= $courseObj->contenu_cours ?>"
                             id="contenu_cours" name="contenu_cours_document" placeholder="URL du Fichier Document" required>
                     <?php endif; ?>
                 </div>
@@ -144,14 +144,14 @@ if (isset($_GET['id'])) {
                     <label for="category_id">Catégorie</label>
                     <select class="form-control" id="category_id" name="category_id" required>
                         <option value="">Sélectionnez une catégorie</option>
-                        <?php foreach ($categories as $category): ?>
-                            <?php if ($category['id_category'] == $course['category_id']): ?>
-                                <option value="<?php echo $category['id_category']; ?>" selected>
-                                    <?php echo $category['category_name']; ?>
+                        <?php foreach ($categoryObj as $category): ?>
+                            <?php if ($category->id_category == $courseObj->category_id): ?>
+                                <option value="<?php echo $category->id_category; ?>" selected>
+                                    <?php echo $category->category_name; ?>
                                 </option>
                             <?php else: ?>
-                                <option value="<?php echo $category['id_category']; ?>">
-                                    <?php echo $category['category_name']; ?>
+                                <option value="<?php echo $category->id_category; ?>">
+                                    <?php echo $category->category_name; ?>
                                 </option>
                             <?php endif; ?>
                         <?php endforeach; ?>

@@ -4,7 +4,7 @@ use Models\CategoryModel;
 require_once '../models/CategoryModel.php';
 $CategoryModel = new CategoryModel();
 
-$Categories = $CategoryModel->getAllCategories();
+$categoryObj = $CategoryModel->getAllCategories();
 
 
 ?>
@@ -106,16 +106,16 @@ $Categories = $CategoryModel->getAllCategories();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($Categories as $Category): ?>
+                        <?php foreach ($categoryObj as $Category): ?>
                             <tr>
-                                <td><?php echo $Category['id_category']; ?></td>
-                                <td><?php echo $Category['category_name']; ?></td>
+                                <td><?php echo $Category->id_category; ?></td>
+                                <td><?php echo $Category->category_name; ?></td>
                                 <td class="text-center">
-                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $Category['id_category']; ?>"
+                                    <a href="../actions/SupprimerTag_action.php?id=<?php echo $Category->id_category; ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?')"><i
                                             class="fas fa-trash"></i></a>
-                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $Category['id_category']; ?>"
+                                    <a href="../pages/ModifierTag__form.php?id=<?php echo $Category->id_category; ?>"
                                         class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>

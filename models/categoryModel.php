@@ -3,8 +3,9 @@
 namespace Models;
 
 use Classes\Database;
+use Classes\Category;
 require_once '../classes/Database.php';
-
+require_once '../classes/Category.php';
 class CategoryModel
 {
 
@@ -20,7 +21,17 @@ class CategoryModel
         $sql = "SELECT * FROM categories";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $category = $stmt->fetchAll();
+
+        $categoryObj = [];
+
+        foreach ($category as $cat) {
+
+            $categoryObj[] = new Category($cat['id_category'], $cat['category_name']);
+
+        }
+
+        return $categoryObj;
     }
 
     public function addCategory($category_name)

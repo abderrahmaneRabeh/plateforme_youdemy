@@ -96,7 +96,6 @@ class CourseModel
             $description = $course['description_cours'];
             $category_id = $course['category_name'];
             $id_enseignant = $course['nom'];
-            $id_utilisateur = $course['id_utilisateur'];
             $is_video = $course['is_video'];
 
             $coursesObj[] = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
@@ -111,7 +110,24 @@ class CourseModel
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_cour', $id_cours);
         $stmt->execute();
-        return $stmt->fetch();
+        $course = $stmt->fetch();
+
+        $id_cours = $course['id_cour'];
+        $title = $course['titre_cour'];
+        $imgPrincipale_cours = $course['imgPrincipale_cours'];
+        $imgSecondaire_cours = $course['imgSecondaire_cours'];
+        $contenu_cours = $course['contenu_cours'];
+        $description = $course['description_cours'];
+        $category_id = $course['category_id'];
+        $id_enseignant = $course['id_enseignant'];
+        $is_video = $course['is_video'];
+
+        $courseObj = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
+        // echo "<pre>";
+        // print_r(value: $courseObj);
+        // echo "</pre>";
+
+        return $courseObj;
     }
 
     public function deleteCourse($id_cours)

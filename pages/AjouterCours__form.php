@@ -11,7 +11,7 @@ session_start();
 $CategoryModel = new CategoryModel();
 $TagModel = new TagModel();
 
-$categories = $CategoryModel->getAllCategories();
+$categoryObj = $CategoryModel->getAllCategories();
 $tagsObj = $TagModel->getAllTags();
 
 ?><!DOCTYPE html>
@@ -135,9 +135,9 @@ $tagsObj = $TagModel->getAllTags();
                     <label for="category_id">Catégorie</label>
                     <select class="form-control" id="category_id" name="category_id" required>
                         <option value="">Sélectionnez une catégorie</option>
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?php echo $category['id_category']; ?>">
-                                <?php echo $category['category_name']; ?>
+                        <?php foreach ($categoryObj as $category): ?>
+                            <option value="<?php echo $category->id_category; ?>">
+                                <?php echo $category->category_name; ?>
                             </option>
                         <?php endforeach; ?>
                     </select>

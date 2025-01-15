@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Classes;
 
 
 class Category
