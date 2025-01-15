@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+use Models\AfficherListeCoursModel;
+require_once '../models/AfficherListeCoursModel.php';
+
+$courseModel = new AfficherListeCoursModel();
+
+$listCoursObj = $courseModel->afficherCours(1);
+
+// echo '<pre>';
+// print_r($listCoursObj);
+// echo '</pre>';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +41,13 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .img-fluid {
+            background-size: cover;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -114,109 +137,31 @@
             <div class="row mx-0 justify-content-center">
                 <div class="col-lg-10">
                     <div class="section-title text-center position-relative mb-5">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Our Courses</h6>
-                        <h1 class="display-5">Discover Our Latest Course Publications</h1>
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Nos Cours</h6>
+                        <h1 class="display-5">Découvrez nos dernières publications de cours</h1>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
-                        <img class="./assets/img-fluid" src="../assets/img/courses-1.jpg" alt="">
-                        <div class="courses-text">
-                            <h4 class="text-center text-white px-3">Web design & development courses for
-                                beginners</h4>
-                            <div class="border-top w-100 mt-3">
-                                <div class="d-flex justify-content-between p-4">
-                                    <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                    <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                        <small>(250)</small></span>
+                <?php foreach ($listCoursObj as $cours): ?>
+                    <div class="col-lg-4 col-md-6 pb-4">
+                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                            <img class="img-fluid" src="<?= $cours->imgPrincipale_cours ?>" alt="<?= $cours->titre_cour ?>">
+                            <div class="courses-text">
+                                <h4 class="text-center text-white px-3"><?= $cours->titre_cour ?></h4>
+                                <div class="border-top w-100 mt-3">
+                                    <div class="d-flex justify-content-between p-4">
+                                        <span class="text-white"><i class="fa fa-user mr-2"></i><?= $cours->id_enseignant ?>
+                                        </span>
+                                        <span class="text-white"><?= $cours->category_id ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
-                        <img class="./assets/img-fluid" src="../assets/img/courses-2.jpg" alt="">
-                        <div class="courses-text">
-                            <h4 class="text-center text-white px-3">Web design & development courses for
-                                beginners</h4>
-                            <div class="border-top w-100 mt-3">
-                                <div class="d-flex justify-content-between p-4">
-                                    <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                    <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                        <small>(250)</small></span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
-                        <img class="./assets/img-fluid" src="../assets/img/courses-3.jpg" alt="">
-                        <div class="courses-text">
-                            <h4 class="text-center text-white px-3">Web design & development courses for
-                                beginners</h4>
-                            <div class="border-top w-100 mt-3">
-                                <div class="d-flex justify-content-between p-4">
-                                    <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                    <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                        <small>(250)</small></span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
-                        <img class="./assets/img-fluid" src="../assets/img/courses-4.jpg" alt="">
-                        <div class="courses-text">
-                            <h4 class="text-center text-white px-3">Web design & development courses for
-                                beginners</h4>
-                            <div class="border-top w-100 mt-3">
-                                <div class="d-flex justify-content-between p-4">
-                                    <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                    <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                        <small>(250)</small></span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
-                        <img class="./assets/img-fluid" src="../assets/img/courses-5.jpg" alt="">
-                        <div class="courses-text">
-                            <h4 class="text-center text-white px-3">Web design & development courses for
-                                beginners</h4>
-                            <div class="border-top w-100 mt-3">
-                                <div class="d-flex justify-content-between p-4">
-                                    <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                    <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                        <small>(250)</small></span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 pb-4">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
-                        <img class="./assets/img-fluid" src="../assets/img/courses-6.jpg" alt="">
-                        <div class="courses-text">
-                            <h4 class="text-center text-white px-3">Web design & development courses for
-                                beginners</h4>
-                            <div class="border-top w-100 mt-3">
-                                <div class="d-flex justify-content-between p-4">
-                                    <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                    <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                        <small>(250)</small></span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+
                 <div class="col-12">
                     <nav aria-label="Page navigation">
                         <ul class="pagination pagination-lg justify-content-center mb-0">
