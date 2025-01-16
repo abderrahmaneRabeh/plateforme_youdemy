@@ -6,10 +6,22 @@ require_once '../models/AfficherListeCoursModel.php';
 
 $courseModel = new AfficherListeCoursModel();
 
-$listCoursObj = $courseModel->afficherCours(1);
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+
+$listCoursObj = $courseModel->afficherCours($page);
+
+$LigneParPage = AfficherListeCoursModel::$coursePerPage;
+$totalLignes = $courseModel->Nbr_Cours();
+
+$LignesSelectioner = ceil($totalLignes / $LigneParPage);
 
 // echo '<pre>';
-// print_r($listCoursObj);
+// print_r($LigneParPage);
+// print_r($totalLignes);
 // echo '</pre>';
 
 ?>
@@ -167,22 +179,43 @@ $listCoursObj = $courseModel->afficherCours(1);
                 <?php endforeach; ?>
 
                 <div class="col-12">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination pagination-lg justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link rounded-0" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <nav>
+                        <ul class="pagination justify-content-center mb-0">
                             <li class="page-item">
-                                <a class="page-link rounded-0" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                                <?php
+                                if ($page > 1) {
+                                    $previous = $page - 1;
+                                    echo "<a class='page-link' href='?page=$previous'><i class='fa fa-angle-double-left'></i></a>";
+                                } else {
+                                    echo "<a class='page-link' href='?page=1'><i class='fa fa-angle-double-left'></i></a>";
+                                }
+                                ?>
+                            </li>
+                            <?php
+
+                            for ($i = 1; $i <= $LignesSelectioner; $i++) {
+                                if ($page == $i) {
+                                    echo "<li class='page-item active'><a class='page-link' href='#'>$i<span class='sr-only'></span></a></li>";
+                                } else {
+                                    echo "<li class='page-item'><a class='page-link' href='?page=$i'>$i</a></li>";
+                                }
+                            }
+
+                            ?>
+
+
+                            <li class="page-item">
+                                <?php
+
+                                if ($page < $LignesSelectioner) {
+                                    $suivant = $page + 1;
+                                    echo "<a class='page-link' href='?page=$suivant'><i class='fa fa-angle-double-right'></i></a>";
+                                } else {
+                                    echo "<a class='page-link' href='?page=$LignesSelectioner'><i class='fa fa-angle-double-right'></i></a>";
+
+                                }
+
+                                ?>
                             </li>
                         </ul>
                     </nav>

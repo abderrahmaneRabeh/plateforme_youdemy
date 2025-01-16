@@ -14,11 +14,19 @@ class AfficherListeCoursModel extends AfficherCours
 {
 
     private $db;
-    public static $coursePerPage = 6;
+    public static $coursePerPage = 3;
 
     public function __construct()
     {
         $this->db = Database::getInstance();
+    }
+
+    public function Nbr_Cours()
+    {
+        $query = $this->db->prepare("SELECT count(*) AS total FROM cours");
+        $query->execute();
+        $result = $query->fetch();
+        return $result['total'];
     }
 
     public function afficherCours($page)
