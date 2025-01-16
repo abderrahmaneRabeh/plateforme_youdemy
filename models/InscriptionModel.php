@@ -51,5 +51,36 @@ class InscriptionModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function getEnseignantInscriptions($id_enseignant)
+    {
+        $sql = "SELECT  co.id_cour,
+                        co.titre_cour,
+                        COUNT(i.id_etudiant) as total_etudiants,
+                        MIN(i.date_insc) as first_insc_date
+                FROM inscription i 
+                JOIN cours co ON i.id_cour = co.id_cour 
+                WHERE co.id_enseignant = :id_enseignant 
+                GROUP BY co.id_cour, co.titre_cour";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_enseignant', $id_enseignant);
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+        // min(i.date_insc) as first_insc_date pour obtenir la date de la première inscription
+    }
+
+
+    public function countEtudiantInscriptions($id_cour)
+    {
+        $sql = "SELECT COUNT(id_etudiant) as total_etudiants FROM inscription WHERE id_cour = :id_cour group BY id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cour);
+        $stmt->execute();
+        return $stmt->fetch()['total_etudiants'];
+    }
+
 }
+
 

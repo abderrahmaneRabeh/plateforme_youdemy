@@ -1,8 +1,19 @@
 <?php
-session_start();
+
+use Models\InscriptionModel;
+
+require_once '../models/InscriptionModel.php';
 require_once '../middlewares/AccessEnseignant.php';
 
+session_start();
 AccessEnseignant();
+
+$inscriptionModel = new InscriptionModel();
+
+$enseignantInscriptions = $inscriptionModel->getEnseignantInscriptions($_SESSION['utilisateur']['id_enseignant']);
+// echo "<pre>";
+// print_r($enseignantInscriptions);
+// echo "</pre>";
 
 ?>
 
@@ -70,73 +81,35 @@ AccessEnseignant();
                     class="
                 fas fa-sign-out-alt" style="color: white;"></i></a>
         </div>
-
-        <!-- Stats Cards -->
-        <div class="row">
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>1,234</h3>
-                    <p>Total Users</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>56</h3>
-                    <p>Total Courses</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>89</h3>
-                    <p>Reservations</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-tag"></i>
-                    <h3>23</h3>
-                    <p>Categories</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Recent Activity -->
         <div class="recent-activity">
-            <h4 class="mb-4">Recent Activity</h4>
+            <h4 class="mb-4">List D'inscription</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Action</th>
-                            <th>Date</th>
-                            <th>Status</th>
+                            <th>ID Cours</th>
+                            <th>Titre du Cours</th>
+                            <th>Date d'inscription (Première)</th>
+                            <th>Nbr d'inscription</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Created new course</td>
-                            <td>2024-01-14</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>Updated profile</td>
-                            <td>2024-01-14</td>
-                            <td><span class="badge badge-info">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Mike Johnson</td>
-                            <td>New reservation</td>
-                            <td>2024-01-13</td>
-                            <td><span class="badge badge-warning">Pending</span></td>
-                        </tr>
+                        <?php foreach ($enseignantInscriptions as $inscription): ?>
+                            <tr>
+                                <td><?= $inscription['id_cour'] ?></td>
+                                <td><?= $inscription['titre_cour'] ?></td>
+                                <td><?= $inscription['first_insc_date'] ?></td>
+                                <td>
+                                    <a href="?id_cour=<?= $inscription['id_cour'] ?>">
+                                        <?= $inscription['total_etudiants'] ?>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

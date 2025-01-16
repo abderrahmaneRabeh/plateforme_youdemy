@@ -1,7 +1,7 @@
 <?php
 
-session_start();
 require_once '../middlewares/AdminAccess.php';
+session_start();
 AdminAcess();
 
 ?>
