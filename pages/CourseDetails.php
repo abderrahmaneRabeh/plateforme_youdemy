@@ -245,7 +245,8 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="py-3 px-4">
                             <?php if (isset($_SESSION['utilisateur'])): ?>
-                                <a class="btn btn-block btn-secondary py-3 px-5" href="">Inscrivez-vous</a>
+                                <a class="btn btn-block btn-secondary py-3 px-5"
+                                    href="../actions/Inscrivez_vous.php?id_cour=<?= $course->id_cour ?>">Inscrivez-vous</a>
                             <?php else: ?>
                                 <a class="btn btn-block btn-secondary py-3 px-5"
                                     href="./seConnecter.php?id_page=<?= $course->id_cour ?>">Se connecter</a>
