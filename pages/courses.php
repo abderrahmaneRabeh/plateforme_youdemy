@@ -15,7 +15,7 @@ if (isset($_GET['page'])) {
 }
 
 if (isset($_POST['tag_filter'])) {
-    $filter = $_POST['tag_filter'];
+    $filter = $_POST['tag_filter'] ?? 0;
     $listCoursObj = $courseModel->afficherCours($page, $filter);
 } else {
     $listCoursObj = $courseModel->afficherCours($page);
@@ -177,9 +177,17 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                         <form class="d-flex align-items-center" action="./courses.php" method="POST">
                             <select name="tag_filter" id="tag_filter" class="form-control border-0 shadow-sm px-4"
                                 style="background-color: #f5f5f5;" onchange="this.form.submit()">
-                                <option value="">Sélectionnez des mots-clés</option>
+                                <option value="0" selected>Sélectionnez des mots-clés</option>
                                 <?php foreach ($TagsObj as $tag): ?>
-                                    <option value="<?php echo $tag->id_tag; ?>"><?php echo $tag->tag_name; ?></option>
+                                    <?php if ($filter == $tag->id_tag): ?>
+                                        <option value="<?php echo $tag->id_tag; ?>" selected>
+                                            <?php echo $tag->tag_name; ?>
+                                        </option>
+                                    <?php else: ?>
+                                        <option value="<?php echo $tag->id_tag; ?>">
+                                            <?php echo $tag->tag_name; ?>
+                                        </option>
+                                    <?php endif ?>
                                 <?php endforeach; ?>
 
                             </select>
@@ -189,24 +197,33 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
             </div>
 
             <div class="row" id="listCours">
-                <?php foreach ($listCoursObj as $cours): ?>
-                    <div class="col-lg-4 col-md-6 pb-4">
-                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
-                            href="./CourseDetails.php?id=<?= $cours->id_cour ?>">
-                            <img class="img-fluid" src="<?= $cours->imgPrincipale_cours ?>" alt="<?= $cours->titre_cour ?>">
-                            <div class="courses-text">
-                                <h4 class="text-center text-white px-3"><?= $cours->titre_cour ?></h4>
-                                <div class="border-top w-100 mt-3">
-                                    <div class="d-flex justify-content-between p-4">
-                                        <span class="text-white"><i class="fa fa-user mr-2"></i><?= $cours->id_enseignant ?>
-                                        </span>
-                                        <span class="text-white"><?= $cours->category_id ?></span>
+                <?php if (!empty($listCoursObj)): ?>
+                    <?php foreach ($listCoursObj as $cours): ?>
+                        <div class="col-lg-4 col-md-6 pb-4">
+                            <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
+                                href="./CourseDetails.php?id=<?= $cours->id_cour ?>">
+                                <img class="img-fluid" src="<?= $cours->imgPrincipale_cours ?>" alt="<?= $cours->titre_cour ?>">
+                                <div class="courses-text">
+                                    <h4 class="text-center text-white px-3"><?= $cours->titre_cour ?></h4>
+                                    <div class="border-top w-100 mt-3">
+                                        <div class="d-flex justify-content-between p-4">
+                                            <span class="text-white"><i class="fa fa-user mr-2"></i><?= $cours->id_enseignant ?>
+                                            </span>
+                                            <span class="text-white"><?= $cours->category_id ?></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-12 text-center my-5">
+                        <h3 class="text-primary font-weight-bold">Aucun cours disponible pour le moment.</h3>
+                        <p class="text-muted">Nous sommes désolés, mais nous n'avons pas encore de cours dans cette
+                            catégorie. Nous vous invitons à consulter nos autres cours.</p>
                     </div>
-                <?php endforeach; ?>
+
+                <?php endif; ?>
 
                 <div class="col-12">
                     <nav>
@@ -323,6 +340,16 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
 
                         listCours.innerHTML = "";
 
+                        if (articles.length == 0) {
+                            let div = document.createElement("div");
+                            div.className = "col-lg-4 col-md-6 pb-4";
+                            div.innerHTML = `
+                            <div class="alert alert-danger" role="alert">
+                                Aucun cours n'a &eacute;t&eacute; trouv&eacute;.
+                            </div>
+                            `;
+                            listCours.appendChild(div);
+                        }
                         articles.forEach(article => {
                             let div = document.createElement("div");
                             div.className = "col-lg-4 col-md-6 pb-4";
@@ -349,8 +376,6 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                     })
 
 
-            } else {
-                window.location.reload();
             }
         })
     </script>
