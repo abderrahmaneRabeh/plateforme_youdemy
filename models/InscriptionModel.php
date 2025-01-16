@@ -81,6 +81,15 @@ class InscriptionModel
         return $stmt->fetch()['total_etudiants'];
     }
 
+    public function CourseEtudiantInscite($id_cour)
+    {
+        $sql = "SELECT * from utilisateurs u JOIN etudiants e on u.id_utilisateur = e.id_utilisateur JOIN inscription i on i.id_etudiant = e.id_etudiant JOIN cours c on c.id_cour = i.id_cour WHERE c.id_cour = :id_cour";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cour', $id_cour);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }
 
 

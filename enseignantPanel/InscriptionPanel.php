@@ -11,9 +11,11 @@ AccessEnseignant();
 $inscriptionModel = new InscriptionModel();
 
 $enseignantInscriptions = $inscriptionModel->getEnseignantInscriptions($_SESSION['utilisateur']['id_enseignant']);
-// echo "<pre>";
-// print_r($enseignantInscriptions);
-// echo "</pre>";
+
+if (isset($_GET['id_cour'])) {
+    $id_cour = $_GET['id_cour'];
+    $EtudinatCourseInscrit = $inscriptionModel->CourseEtudiantInscite($id_cour);
+}
 
 ?>
 
@@ -112,6 +114,47 @@ $enseignantInscriptions = $inscriptionModel->getEnseignantInscriptions($_SESSION
 
             </div>
         </div>
+        <?php if (isset($_GET['id_cour'])): ?>
+            <div class="student-list mt-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0">Liste des étudiants inscrits au
+                        <span class="text-primary">
+                            <?= $EtudinatCourseInscrit[0]['titre_cour'] ?>
+                        </span>
+                    </h4>
+                    <button type="button" class="btn btn-primary" style="margin-left: 10px;"
+                        onclick="window.location.href = window.location.href.split('?')[0]"><i class="fa fa-eye-slash"></i>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID Étudiant</th>
+                                <th>Nom de l'étudiant</th>
+                                <th>Email de l'étudiant</th>
+                                <th>Date d'inscription</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+
+                            <?php foreach ($EtudinatCourseInscrit as $etd): ?>
+                                <tr>
+                                    <td><?= $etd['id_etudiant'] ?></td>
+                                    <td><?= $etd['nom'] ?></td>
+                                    <td><?= $etd['email'] ?></td>
+                                    <td><?= $etd['date_insc'] ?></td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php else: ?>
+            <div></div>
+        <?php endif; ?>
+
     </div>
 
     <!-- JavaScript Libraries -->
