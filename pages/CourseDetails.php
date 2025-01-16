@@ -1,10 +1,22 @@
 <?php
 use Models\AfficherListeCoursModel;
 use Models\TagModel;
+use Models\EtudiantModel;
+use Models\InscriptionModel;
+
 require_once '../models/AfficherListeCoursModel.php';
 require_once '../models/TagModel.php';
 
+require_once '../models/InscriptionModel.php';
+require_once '../models/EtudiantModel.php';
 session_start();
+
+$inscriptionModel = new InscriptionModel();
+$etudiantModel = new EtudiantModel();
+
+$utilisateur_id = $etudiantModel->SelectedEtudiant($_SESSION['utilisateur']['id_utilisateur']);
+
+
 
 $courseModel = new AfficherListeCoursModel();
 $TagModel = new TagModel();
@@ -14,11 +26,9 @@ if (isset($_GET['id'])) {
 
     $course = $courseModel->AfficherCoursDetaille($id);
     $courseTags = $TagModel->getCoursTags($id);
-
-    // echo "<pre>";
-    // print_r(value: $course);
-    // echo "</pre>";
 }
+
+// echo 
 
 ?>
 
@@ -228,6 +238,18 @@ if (isset($_GET['id'])) {
 
                 <!-- Course Information Sidebar -->
                 <div class="col-lg-4 mt-5 mt-lg-0">
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $_SESSION['error'];
+                            unset($_SESSION['error']); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['success'])): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $_SESSION['success'];
+                            unset($_SESSION['success']); ?>
+                        </div>
+                    <?php endif; ?>
                     <!-- Course Features -->
                     <div class="bg-primary mb-5 py-3">
                         <h3 class="text-white py-3 px-4 m-0">Caractéristiques du cours</h3>

@@ -33,4 +33,13 @@ class EtudiantModel
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function SelectedEtudiant($id)
+    {
+        $sql = "SELECT id_etudiant FROM etudiants WHERE id_utilisateur = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }
