@@ -1,8 +1,23 @@
 <?php
-session_start();
+
+use Models\InscriptionModel;
+
+require_once '../models/InscriptionModel.php';
 require_once '../middlewares/AccessEnseignant.php';
 
+session_start();
 AccessEnseignant();
+
+$inscriptionModel = new InscriptionModel();
+
+$enseignantInscriptions = $inscriptionModel->getEnseignantInscriptions($_SESSION['utilisateur']['id_enseignant']);
+$countTotalEtudiantsInscrits = $inscriptionModel->countTotalEtudiantsInscrits();
+$countTotalCours = $inscriptionModel->countTotalCours();
+
+if (isset($_GET['id_cour'])) {
+    $id_cour = $_GET['id_cour'];
+    $EtudinatCourseInscrit = $inscriptionModel->CourseEtudiantInscite($id_cour);
+}
 
 ?>
 
@@ -39,15 +54,13 @@ AccessEnseignant();
             <h3><i class="fa fa-book-reader mr-2"></i>YouDemy</h3>
         </div>
         <div class="sidebar-menu">
-            <a href="./StatistiquesPanel.php" class="menu-item active">
-                <i class="fas fa-tachometer-alt"></i>Dashboard
+            <a href="./InscriptionPanel.php" class="menu-item active">
+                <i class="fas fa-list-ol"></i>Inscriptions
             </a>
             <a href="./CoursesPanel.php" class="menu-item">
                 <i class="fas fa-graduation-cap"></i>Cours
             </a>
-            <a href="./InscriptionPanel.php" class="menu-item">
-                <i class="fas fa-list-ol"></i>Inscriptions
-            </a>
+
         </div>
     </div>
 
@@ -71,74 +84,95 @@ AccessEnseignant();
                 fas fa-sign-out-alt" style="color: white;"></i></a>
         </div>
 
-        <!-- Stats Cards -->
         <div class="row">
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>1,234</h3>
-                    <p>Total Users</p>
+            <div class="col-md-6">
+                <div class="stat-card p-3 bg-white rounded shadow-sm">
+                    <i class="fas fa-users fa-3x text-primary mr-2"></i>
+                    <h3 class="d-inline-block text-muted">Utilisateurs inscrits :</h3>
+                    <h3 class="d-inline-block mt-3 text-primary"><?= $countTotalEtudiantsInscrits ?></h3>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>56</h3>
-                    <p>Total Courses</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>89</h3>
-                    <p>Reservations</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card">
-                    <i class="fas fa-tag"></i>
-                    <h3>23</h3>
-                    <p>Categories</p>
+            <div class="col-md-6">
+                <div class="stat-card p-3 bg-white rounded shadow-sm">
+                    <i class="fas fa-book-open fa-3x text-primary mr-2"></i>
+                    <h3 class="d-inline-block text-muted">Total des cours :</h3>
+                    <h3 class="d-inline-block mt-3 text-primary"><?= $countTotalCours ?></h3>
                 </div>
             </div>
         </div>
 
         <!-- Recent Activity -->
         <div class="recent-activity">
-            <h4 class="mb-4">Recent Activity</h4>
+            <h4 class="mb-4">List D'inscription</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Action</th>
-                            <th>Date</th>
-                            <th>Status</th>
+                            <th>ID Cours</th>
+                            <th>Titre du Cours</th>
+                            <th>Date d'inscription (Première)</th>
+                            <th>Nbr d'inscription</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Created new course</td>
-                            <td>2024-01-14</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>Updated profile</td>
-                            <td>2024-01-14</td>
-                            <td><span class="badge badge-info">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Mike Johnson</td>
-                            <td>New reservation</td>
-                            <td>2024-01-13</td>
-                            <td><span class="badge badge-warning">Pending</span></td>
-                        </tr>
+                        <?php foreach ($enseignantInscriptions as $inscription): ?>
+                            <tr>
+                                <td><?= $inscription['id_cour'] ?></td>
+                                <td><?= $inscription['titre_cour'] ?></td>
+                                <td><?= $inscription['first_insc_date'] ?></td>
+                                <td>
+                                    <a href="?id_cour=<?= $inscription['id_cour'] ?>">
+                                        <?= $inscription['total_etudiants'] ?>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
+
             </div>
         </div>
+        <?php if (isset($_GET['id_cour'])): ?>
+            <div class="student-list mt-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0">Liste des étudiants inscrits au
+                        <span class="text-primary">
+                            <?= $EtudinatCourseInscrit[0]['titre_cour'] ?>
+                        </span>
+                    </h4>
+                    <button type="button" class="btn btn-primary" style="margin-left: 10px;"
+                        onclick="window.location.href = window.location.href.split('?')[0]"><i class="fa fa-eye-slash"></i>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID Étudiant</th>
+                                <th>Nom de l'étudiant</th>
+                                <th>Email de l'étudiant</th>
+                                <th>Date d'inscription</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+
+                            <?php foreach ($EtudinatCourseInscrit as $etd): ?>
+                                <tr>
+                                    <td><?= $etd['id_etudiant'] ?></td>
+                                    <td><?= $etd['nom'] ?></td>
+                                    <td><?= $etd['email'] ?></td>
+                                    <td><?= $etd['date_insc'] ?></td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php else: ?>
+            <div></div>
+        <?php endif; ?>
+
     </div>
 
     <!-- JavaScript Libraries -->

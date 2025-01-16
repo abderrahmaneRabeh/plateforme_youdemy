@@ -90,6 +90,23 @@ class InscriptionModel
         return $stmt->fetchAll();
     }
 
+    public function countTotalEtudiantsInscrits()
+    {
+        $sql = "SELECT COUNT(DISTINCT id_etudiant) as total_etudiants FROM inscription";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch()['total_etudiants'];
+    }
+
+
+    public function countTotalCours()
+    {
+        $sql = "SELECT COUNT(*) as total_cours FROM cours";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch()['total_cours'];
+    }
+
 }
 
 
