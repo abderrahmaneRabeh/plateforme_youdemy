@@ -121,15 +121,7 @@ if (isset($_GET['id'])) {
                 <div class="navbar-nav mx-auto py-0">
                     <a href="../index.php" class="nav-item nav-link ">Accueil</a>
                     <a href="./courses.php" class="nav-item nav-link active">Cours</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="detail.html" class="dropdown-item">D&eacute;tail du cours</a>
-                            <a href="feature.html" class="dropdown-item">Nos fonctionnalit&eacute;s</a>
-                            <a href="team.html" class="dropdown-item">Instructeurs</a>
-                            <a href="testimonial.html" class="dropdown-item">T&eacute;moignages</a>
-                        </div>
-                    </div>
+                    <a href="./ListCategory.php" class="nav-item nav-link">Categories</a>
                 </div>
                 <?php if (isset($_SESSION['utilisateur'])): ?>
                     <div class="nav-item dropdown">

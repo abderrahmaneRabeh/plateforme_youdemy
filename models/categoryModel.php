@@ -9,6 +9,8 @@ require_once '../classes/Category.php';
 class CategoryModel
 {
 
+    public $CategoryPerPage = 6;
+
     private $db;
 
     public function __construct()
@@ -16,10 +18,40 @@ class CategoryModel
         $this->db = Database::getInstance();
     }
 
+
+    public function Nbr_Category()
+    {
+        $query = $this->db->prepare("SELECT count(*) AS total FROM categories");
+        $query->execute();
+        $result = $query->fetch();
+        return $result['total'];
+    }
+
     public function getAllCategories()
     {
         $sql = "SELECT * FROM categories";
         $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $category = $stmt->fetchAll();
+
+        $categoryObj = [];
+
+        foreach ($category as $cat) {
+
+            $categoryObj[] = new Category($cat['id_category'], $cat['category_name']);
+
+        }
+
+        return $categoryObj;
+    }
+
+    public function getCategoriesDetails($page = 1)
+    {
+        $offset = ($page - 1) * $this->CategoryPerPage;
+        $sql = "SELECT * FROM categories LIMIT :offset, :limit";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $this->CategoryPerPage, \PDO::PARAM_INT);
         $stmt->execute();
         $category = $stmt->fetchAll();
 
