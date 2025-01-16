@@ -2,9 +2,11 @@
 session_start();
 
 use Models\AfficherListeCoursModel;
+use Models\TagModel;
 require_once '../models/AfficherListeCoursModel.php';
-
+require_once '../models/TagModel.php';
 $courseModel = new AfficherListeCoursModel();
+$TagModel = new TagModel();
 
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -13,6 +15,7 @@ if (isset($_GET['page'])) {
 }
 
 $listCoursObj = $courseModel->afficherCours($page);
+$TagsObj = $TagModel->getAllTags();
 
 $LigneParPage = AfficherListeCoursModel::$coursePerPage;
 $totalLignes = $courseModel->Nbr_Cours();
@@ -157,8 +160,28 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                     </div>
                 </div>
             </div>
+            <div class="row mt-4 mb-5">
+                <div class="col-lg-8">
+                    <form class="d-flex align-items-center" action="./courses.php" method="GET">
+                        <input class="form-control border-0 shadow-sm px-4" style="background-color: #f5f5f5;"
+                            type="text" placeholder="Rechercher un cours" aria-label="Search" id="searchCours">
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <select name="tags" id="tags" class="form-control border-0 shadow-sm px-4"
+                            style="background-color: #f5f5f5;">
+                            <option value="">Sélectionnez des mots-clés</option>
+                            <?php foreach ($TagsObj as $tag): ?>
+                                <option value="<?php echo $tag->id_tag; ?>"><?php echo $tag->tag_name; ?></option>
+                            <?php endforeach; ?>
 
-            <div class="row">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="listCours">
                 <?php foreach ($listCoursObj as $cours): ?>
                     <div class="col-lg-4 col-md-6 pb-4">
                         <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
@@ -279,6 +302,49 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
 
 
     <!-- JavaScript Libraries -->
+    <script>
+        let searchCours = document.getElementById("searchCours");
+        let listCours = document.getElementById("listCours");
+
+        searchCours.addEventListener("input", function (event) {
+            let searchValue = event.target.value;
+
+            if (searchValue.length > 0) {
+                fetch(`../actions/FetchCourses.php?search=${searchValue}`)
+                    .then(response => response.json())
+                    .then(articles => {
+
+                        listCours.innerHTML = "";
+
+                        articles.forEach(article => {
+                            let div = document.createElement("div");
+                            div.className = "col-lg-4 col-md-6 pb-4";
+                            div.innerHTML = `
+                            <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="./CourseDetails.php?id=${article.id_cour}">
+                                <img class="img-fluid" src="${article.imgPrincipale_cours}" alt="${article.titre_cour}">
+                                <div class="courses-text">
+                                    <h4 class="text-center text-white px-3">${article.titre_cour}</h4>
+                                    <div class="border-top w-100 mt-3">
+                                        <div class="d-flex justify-content-between p-4">
+                                            <span class="text-white"><i class="fa fa-user mr-2"></i>${article.nom}
+                                            </span>
+                                            <span class="text-white">${article.category_name}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            `;
+                            listCours.appendChild(div);
+
+                        });
+
+
+                    })
+
+
+            }
+        })
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/easing/easing.min.js"></script>
