@@ -62,7 +62,6 @@ CREATE TABLE inscription (
     id_etudiant INT,
     id_cour INT,
     date_insc TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    is_suspension BOOLEAN DEFAULT false,
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant) ON DELETE CASCADE,
     FOREIGN KEY (id_cour) REFERENCES cours(id_cour) ON DELETE CASCADE
 );
