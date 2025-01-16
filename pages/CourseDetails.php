@@ -9,26 +9,31 @@ require_once '../models/TagModel.php';
 
 require_once '../models/InscriptionModel.php';
 require_once '../models/EtudiantModel.php';
+require_once '../middlewares/ConnectionAccess.php';
 session_start();
+ConnectionAccess();
 
 $inscriptionModel = new InscriptionModel();
 $etudiantModel = new EtudiantModel();
-
-$utilisateur_id = $etudiantModel->SelectedEtudiant($_SESSION['utilisateur']['id_utilisateur']);
-
-
-
 $courseModel = new AfficherListeCoursModel();
 $TagModel = new TagModel();
-if (isset($_GET['id'])) {
 
+
+$utilisateur_id = $etudiantModel->SelectedEtudiant($_SESSION['utilisateur']['id_utilisateur']);
+$utilisateur_id = $utilisateur_id['id_etudiant'];
+
+// echo "<pre>";
+// print_r(value: $inscriptionsList);
+// echo "</pre>";
+// echo $utilisateur_id;
+
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
+    $isInscription = $inscriptionModel->getUserInscriptions($utilisateur_id, $_GET['id']);
     $course = $courseModel->AfficherCoursDetaille($id);
     $courseTags = $TagModel->getCoursTags($id);
 }
-
-// echo 
 
 ?>
 
@@ -245,7 +250,7 @@ if (isset($_GET['id'])) {
                         </div>
                     <?php endif; ?>
                     <?php if (isset($_SESSION['success'])): ?>
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-success" role="alert">
                             <?php echo $_SESSION['success'];
                             unset($_SESSION['success']); ?>
                         </div>
@@ -266,13 +271,21 @@ if (isset($_GET['id'])) {
                             <h6 class="text-white my-auto">#<?= $course->id_cour ?></h6>
                         </div>
                         <div class="py-3 px-4">
-                            <?php if (isset($_SESSION['utilisateur'])): ?>
-                                <a class="btn btn-block btn-secondary py-3 px-5"
-                                    href="../actions/Inscrivez_vous.php?id_cour=<?= $course->id_cour ?>">Inscrivez-vous</a>
+
+                            <?php if ($isInscription): ?>
+                                <div class="alert alert-info">
+                                    Vous êtes déjà inscrit à ce cours.
+                                </div>
                             <?php else: ?>
-                                <a class="btn btn-block btn-secondary py-3 px-5"
-                                    href="./seConnecter.php?id_page=<?= $course->id_cour ?>">Se connecter</a>
+                                <?php if (isset($_SESSION['utilisateur'])): ?>
+                                    <a class="btn btn-block btn-secondary py-3 px-5"
+                                        href="../actions/Inscrivez_vous.php?id_cour=<?= $course->id_cour ?>">Inscrivez-vous</a>
+                                <?php else: ?>
+                                    <a class="btn btn-block btn-secondary py-3 px-5"
+                                        href="./seConnecter.php?id_page=<?= $course->id_cour ?>">Se connecter</a>
+                                <?php endif; ?>
                             <?php endif; ?>
+
                         </div>
                     </div>
 
