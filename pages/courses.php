@@ -14,13 +14,13 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 
-if (isset($_POST['tag_filter'])) {
-    $filter = $_POST['tag_filter'] ?? 0;
+$filter = 0;
+if (isset($_GET['tag_filter'])) {
+    $filter = $_GET['tag_filter'];
     $listCoursObj = $courseModel->afficherCours($page, $filter);
 } else {
     $listCoursObj = $courseModel->afficherCours($page);
 }
-
 
 $TagsObj = $TagModel->getAllTags();
 
@@ -174,7 +174,7 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                 </div>
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center justify-content-end">
-                        <form class="d-flex align-items-center" action="./courses.php" method="POST">
+                        <form class="d-flex align-items-center" method="GET">
                             <select name="tag_filter" id="tag_filter" class="form-control border-0 shadow-sm px-4"
                                 style="background-color: #f5f5f5;" onchange="this.form.submit()">
                                 <option value="0" selected>Sélectionnez des mots-clés</option>
@@ -232,9 +232,9 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                                 <?php
                                 if ($page > 1) {
                                     $previous = $page - 1;
-                                    echo "<a class='page-link' href='?page=$previous'><i class='fa fa-angle-double-left'></i></a>";
+                                    echo "<a class='page-link' href='?tag_filter=$filter&page=$previous'><i class='fa fa-angle-double-left'></i></a>";
                                 } else {
-                                    echo "<a class='page-link' href='?page=1'><i class='fa fa-angle-double-left'></i></a>";
+                                    echo "<a class='page-link' href='?tag_filter=$filter&page=1'><i class='fa fa-angle-double-left'></i></a>";
                                 }
                                 ?>
                             </li>
@@ -244,7 +244,7 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                                 if ($page == $i) {
                                     echo "<li class='page-item active'><a class='page-link' href='#'>$i<span class='sr-only'></span></a></li>";
                                 } else {
-                                    echo "<li class='page-item'><a class='page-link' href='?page=$i'>$i</a></li>";
+                                    echo "<li class='page-item'><a class='page-link' href='?tag_filter=$filter&page=$i'>$i</a></li>";
                                 }
                             }
 
@@ -256,9 +256,9 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
 
                                 if ($page < $LignesSelectioner) {
                                     $suivant = $page + 1;
-                                    echo "<a class='page-link' href='?page=$suivant'><i class='fa fa-angle-double-right'></i></a>";
+                                    echo "<a class='page-link' href='?tag_filter=$filter&page=$suivant'><i class='fa fa-angle-double-right'></i></a>";
                                 } else {
-                                    echo "<a class='page-link' href='?page=$LignesSelectioner'><i class='fa fa-angle-double-right'></i></a>";
+                                    echo "<a class='page-link' href='?tag_filter=$filter&page=$LignesSelectioner'><i class='fa fa-angle-double-right'></i></a>";
 
                                 }
 

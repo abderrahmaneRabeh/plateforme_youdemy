@@ -195,43 +195,30 @@ if (isset($_GET['id'])) {
                                     <h2 class="mb-0">
                                         <button class="btn btn-block py-3 text-white text-left" type="button"
                                             data-toggle="collapse" data-target="#content1">
-                                            <i class="fa fa-video mr-3"></i>Module 1 : Introduction
+                                            <i class="fa fa-file-archive mr-3"></i>Ressources
                                             <span class="float-right"><i class="fa fa-chevron-down"></i></span>
                                         </button>
                                     </h2>
                                 </div>
                                 <div id="content1" class="collapse show" data-parent="#courseContent">
                                     <div class="card-body bg-light">
-                                        <a href="#" class="d-flex align-items-center text-dark mb-3">
-                                            <i class="fa fa-play-circle text-primary mr-3"></i>
-                                            <span>1.1 Vue d'ensemble du cours</span>
-                                            <span class="ml-auto">30 min</span>
-                                        </a>
-                                        <a href="#" class="d-flex align-items-center text-dark mb-3">
-                                            <i class="fa fa-file-pdf text-primary mr-3"></i>
-                                            <span>1.2 Matériaux du cours</span>
-                                            <span class="ml-auto">PDF</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card border-0 mb-2">
-                                <div class="card-header p-0 border bg-secondary">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-block py-3 text-white text-left" type="button"
-                                            data-toggle="collapse" data-target="#content2">
-                                            <i class="fa fa-video mr-3"></i>Module 2 : Sujects avancés
-                                            <span class="float-right"><i class="fa fa-chevron-down"></i></span>
-                                        </button>
-                                    </h2>
-                                </div>
-                                <div id="content2" class="collapse" data-parent="#courseContent">
-                                    <div class="card-body bg-light">
-                                        <a href="#" class="d-flex align-items-center text-dark mb-3">
-                                            <i class="fa fa-play-circle text-primary mr-3"></i>
-                                            <span>2.1 Concepts avancés</span>
-                                            <span class="ml-auto">45 min</span>
-                                        </a>
+                                        <?php if ($course->is_video == 1): ?>
+                                            <a href="<?= $course->contenu_cours ?>"
+                                                class="d-flex align-items-center text-dark mb-3">
+                                                <i class="fa fa-play-circle text-primary mr-3"></i>
+                                                <span>Video qui suite le cours</span>
+                                                <span class="ml-auto">30 min</span>
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?= $course->contenu_cours ?>"
+                                                class="d-flex align-items-center text-dark mb-3">
+                                                <i class="fa fa-file-pdf text-primary mr-3"></i>
+                                                <span>Documentaion du cours</span>
+                                                <span class="ml-auto">PDF/WORD</span>
+                                            </a>
+                                        <?php endif; ?>
+
+
                                     </div>
                                 </div>
                             </div>
