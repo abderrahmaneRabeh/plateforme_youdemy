@@ -29,12 +29,16 @@ class AfficherListeCoursModel extends AfficherCours
         return $result['total'];
     }
 
-    public function afficherCours($page)
+    public function afficherCours($page, $tagFilter = 0)
     {
 
         $offset = ($page - 1) * self::$coursePerPage;
-        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur LIMIT :offset, :limit";
-        $stmt = $this->db->prepare($sql);
+        if ($tagFilter > 0) {
+            $stmt = $this->db->prepare("SELECT * FROM cours co JOIN cours_tags tc ON co.id_cour = tc.id_cour JOIN tags t ON t.id_tag = tc.id_tag join categories ca ON co.category_id = ca.id_category JOIN enseignants en ON co.id_enseignant = en.id_enseignant JOIN utilisateurs u ON en.id_utilisateur = u.id_utilisateur WHERE t.id_tag = :tag LIMIT :offset, :limit");
+            $stmt->bindParam(':tag', $tagFilter);
+        } else {
+            $stmt = $this->db->prepare("SELECT * FROM cours co JOIN categories ca ON co.category_id = ca.id_category JOIN enseignants en ON co.id_enseignant = en.id_enseignant JOIN utilisateurs u ON en.id_utilisateur = u.id_utilisateur LIMIT :offset, :limit");
+        }
         $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $stmt->bindValue(':limit', self::$coursePerPage, \PDO::PARAM_INT);
         $stmt->execute();

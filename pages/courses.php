@@ -14,7 +14,14 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 
-$listCoursObj = $courseModel->afficherCours($page);
+if (isset($_POST['tag_filter'])) {
+    $filter = $_POST['tag_filter'];
+    $listCoursObj = $courseModel->afficherCours($page, $filter);
+} else {
+    $listCoursObj = $courseModel->afficherCours($page);
+}
+
+
 $TagsObj = $TagModel->getAllTags();
 
 $LigneParPage = AfficherListeCoursModel::$coursePerPage;
@@ -162,21 +169,21 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
             </div>
             <div class="row mt-4 mb-5">
                 <div class="col-lg-8">
-                    <form class="d-flex align-items-center" action="./courses.php" method="GET">
-                        <input class="form-control border-0 shadow-sm px-4" style="background-color: #f5f5f5;"
-                            type="text" placeholder="Rechercher un cours" aria-label="Search" id="searchCours">
-                    </form>
+                    <input class="form-control border-0 shadow-sm px-4" style="background-color: #f5f5f5;" type="text"
+                        placeholder="Rechercher un cours" aria-label="Search" id="searchCours">
                 </div>
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center justify-content-end">
-                        <select name="tags" id="tags" class="form-control border-0 shadow-sm px-4"
-                            style="background-color: #f5f5f5;">
-                            <option value="">Sélectionnez des mots-clés</option>
-                            <?php foreach ($TagsObj as $tag): ?>
-                                <option value="<?php echo $tag->id_tag; ?>"><?php echo $tag->tag_name; ?></option>
-                            <?php endforeach; ?>
+                        <form class="d-flex align-items-center" action="./courses.php" method="POST">
+                            <select name="tag_filter" id="tag_filter" class="form-control border-0 shadow-sm px-4"
+                                style="background-color: #f5f5f5;" onchange="this.form.submit()">
+                                <option value="">Sélectionnez des mots-clés</option>
+                                <?php foreach ($TagsObj as $tag): ?>
+                                    <option value="<?php echo $tag->id_tag; ?>"><?php echo $tag->tag_name; ?></option>
+                                <?php endforeach; ?>
 
-                        </select>
+                            </select>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -342,6 +349,8 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                     })
 
 
+            } else {
+                window.location.reload();
             }
         })
     </script>
