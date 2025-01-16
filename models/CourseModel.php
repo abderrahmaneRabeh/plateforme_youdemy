@@ -172,4 +172,13 @@ class CourseModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function MyCourses($id_utilisateur)
+    {
+        $sql = "SELECT * FROM cours c join inscription i on c.id_cour = i.id_cour JOIN etudiants e on e.id_etudiant = i.id_etudiant WHERE e.id_utilisateur = :id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_utilisateur', $id_utilisateur);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

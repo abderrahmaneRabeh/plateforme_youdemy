@@ -85,7 +85,7 @@
                             style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
                             data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
                         <div class="dropdown-menu m-0" style="border-radius: 5px;">
-                            <a href="mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <a href="./pages/mesCours.php" class="dropdown-item">Mes Cours</a>
                             <a href="./actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </div>

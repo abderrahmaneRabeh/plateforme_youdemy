@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+use Models\CourseModel;
+require_once '../models/CourseModel.php';
+require_once '../middlewares/ConnectionAccess.php';
+
+$id_utilisateur = $_SESSION['utilisateur']['id_utilisateur'];
+$courseModel = new CourseModel();
+
+$Mycourses = $courseModel->MyCourses($id_utilisateur);
+// echo "<pre>";
+// print_r(value: $Mycourses);
+// echo "</pre>";
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,7 +131,6 @@
         </div>
     </div>
     <!-- Topbar End -->
-
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
@@ -125,20 +142,23 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="../index.php" class="nav-item nav-link">Accueil</a>
-                    <a href="./courses.php" class="nav-item nav-link">Cours</a>
-                    <a href="./mesCours.php" class="nav-item nav-link active">Mes Cours</a>
+                    <a href="../index.php" class="nav-item nav-link ">Accueil</a>
+                    <a href="./courses.php" class="nav-item nav-link active">Cours</a>
                     <a href="./ListCategory.php" class="nav-item nav-link">Categories</a>
                 </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle"
-                        style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
-                        data-toggle="dropdown">Mon Compte</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="profile.php" class="dropdown-item">Profile</a>
-                        <a href="../actions/logout.php" class="dropdown-item">Déconnexion</a>
+                <?php if (isset($_SESSION['utilisateur'])): ?>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle"
+                            style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
+                            data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
+                        <div class="dropdown-menu m-0" style="border-radius: 5px;">
+                            <a href="mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <a href="../actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
+                        </div>
                     </div>
-                </div>
+                <?php else: ?>
+                    <a href="./seConnecter.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Se connecter</a>
+                <?php endif; ?>
             </div>
         </nav>
     </div>
@@ -172,26 +192,38 @@
 
             <div class="row">
                 <!-- Course Card Template -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="course-card shadow">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="https://img-c.udemycdn.com/course/480x270/1147764_c709.jpg"
-                                alt="Course Image">
-                            <div class="course-status status-in-progress">En cours</div>
-                        </div>
-                        <div class="course-info">
-                            <h4 class="mb-3">développement web</h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 65%;"
-                                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-3">
-                                <span class="last-accessed"><i class="far fa-clock mr-1"></i> Inscrit le:
-                                    16/01/2024</span>
-                            </div>
-                        </div>
+                <?php if (empty($Mycourses)): ?>
+                    <div class="col-md-12 text-center">
+                        <h4 class="mb-3 bg-light p-3">Vous n'avez pas encore de cours</h4>
                     </div>
-                </div>
+                <?php else: ?>
+                    <?php foreach ($Mycourses as $course): ?>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="course-card shadow">
+                                <div class="position-relative">
+                                    <img class="img-fluid" src="<?= $course['imgPrincipale_cours'] ?>" alt="Course Image">
+                                    <?php if ($course['is_video'] == 1): ?>
+                                        <div class="course-status status-in-progress">En cours</div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="course-info">
+                                    <a href="./CourseDetails.php?id=<?= $course['id_cour'] ?>" style="text-decoration: none;">
+                                        <h4 class="mb-3"><?= $course['titre_cour'] ?></h4>
+                                    </a>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 65%;"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <span class="last-accessed"><i class="far fa-clock mr-1"></i> Inscrit le:
+                                            <?= $course['date_insc'] ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
