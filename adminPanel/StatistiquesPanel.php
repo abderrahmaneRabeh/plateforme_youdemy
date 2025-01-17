@@ -14,6 +14,14 @@ $totalUtilisateurs = $statistiqueModel->Nombre_total_utilisateurs();
 $totalInscriptions = $statistiqueModel->Nombre_total_Inscriptions();
 $totalCategories = $statistiqueModel->Nombre_total_Categories();
 $totalTags = $statistiqueModel->Nombre_total_Tags();
+$repartitionParCategorie = $statistiqueModel->repartitionParCategorie();
+$CoursPlusEtudinat = $statistiqueModel->CoursPlusEtudinat();
+
+if (isset($_GET['category_id'])) {
+
+    $categoryCourses = $statistiqueModel->CategoryCourses($_GET['category_id']);
+
+}
 
 ?>
 
@@ -90,12 +98,12 @@ $totalTags = $statistiqueModel->Nombre_total_Tags();
         }
 
         /* Icon specific backgrounds */
-        .stat-card .fa-users {
+        .stat-card .fa-user-friends {
             background: rgba(1, 86, 255, 0.1);
             color: #0156FF;
         }
 
-        .stat-card .fa-graduation-cap {
+        .stat-card .fa-book {
             background: rgba(76, 175, 80, 0.1);
             color: #4CAF50;
         }
@@ -105,9 +113,14 @@ $totalTags = $statistiqueModel->Nombre_total_Tags();
             color: #FF9800;
         }
 
-        .stat-card .fa-tag {
+        .stat-card .fa-list {
             background: rgba(156, 39, 176, 0.1);
             color: #9C27B0;
+        }
+
+        .stat-card .fa-tags {
+            background: rgba(255, 87, 34, 0.1);
+            color: #FF5722;
         }
 
         /* Animation */
@@ -166,103 +179,174 @@ $totalTags = $statistiqueModel->Nombre_total_Tags();
         </div>
 
         <!-- Stats Cards -->
-        <div class="row">
-            <div class="col-md-3">
+        <div class="row justify-content-center">
+            <div class="col-md-2">
                 <div class="stat-card">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-user-friends"></i>
                     <h3><?= $totalUtilisateurs ?></h3>
                     <p>Utilisateurs Total</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="stat-card">
-                    <i class="fas fa-graduation-cap"></i>
+                    <i class="fas fa-book"></i>
                     <h3><?= $TotalCourses ?></h3>
                     <p>Cours Total</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="stat-card">
                     <i class="fas fa-calendar-check"></i>
                     <h3><?= $totalInscriptions ?></h3>
                     <p>Inscriptions total</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="stat-card">
-                    <i class="fas fa-tag"></i>
+                    <i class="fas fa-list"></i>
                     <h3><?= $totalCategories ?></h3>
                     <p>Categories Total</p>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="stat-card">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-tags"></i>
                     <h3><?= $totalTags ?></h3>
                     <p>Total Mots-Clé</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // Sidebar Toggle
-        $("#sidebarToggle").click(function (e) {
-            e.preventDefault();
-            $(".sidebar").toggleClass("active");
-            $(".main-content").toggleClass("active");
-        });
+        <div class="p-3 bg-white rounded shadow-sm d-flex align-items-center justify-content-between mt-4"
+            style="width: 83%;margin: auto;">
+            <h3 class="d-inline-block text-muted mb-0"><span
+                    class="animate-in text-primary"><?= $CoursPlusEtudinat['titre_cour'] ?></span> est le cours le plus
+                étudiants:
+            </h3>
+            <h3 class="d-inline-block  text-primary ml-2 mb-0"><?= $CoursPlusEtudinat['total'] ?></h3>
+        </div>
 
-        // Make menu items active on click
-        $(".menu-item").click(function () {
-            $(".menu-item").removeClass("active");
-            $(this).addClass("active");
-        });
 
-        // Add this to your existing script section
-        document.addEventListener('DOMContentLoaded', function () {
-            // Animate numbers when in view
-            const animateValue = (obj, start, end, duration) => {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    obj.innerHTML = Math.floor(progress * (end - start) + start);
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            };
 
-            // Create intersection observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const endValue = parseInt(target.getAttribute('data-value'));
-                        animateValue(target, 0, endValue, 2000);
-                        entry.target.classList.add('animate-in');
-                        observer.unobserve(target);
-                    }
-                });
-            }, { threshold: 0.5 });
+        <div class="recent-activity mt-4">
+            <h4 class="mb-4">Répartition par catégorie</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>nom de category</td>
+                            <td>nombre de courses</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($repartitionParCategorie as $category): ?>
 
-            // Observe all stat card numbers
-            document.querySelectorAll('.stat-card h3').forEach(el => {
-                const currentValue = el.innerHTML;
-                el.setAttribute('data-value', currentValue);
-                el.innerHTML = '0';
-                observer.observe(el);
+                            <tr>
+                                <td><?= $category['category_name'] ?></td>
+                                <td><a href="?category_id=<?= $category['id_category'] ?>"><?= $category['totalCour'] ?></a>
+                                </td>
+                            </tr>
+
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <?php if (isset($_GET['category_id'])): ?>
+            <div class="recent-activity">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0">Liste des étudiants inscrits au
+                        <span class="text-primary">
+                            <?= $categoryCourses[0]['category_name'] ?>
+                        </span>
+                    </h4>
+                    <button type="button" class="btn btn-primary" style="margin-left: 10px;"
+                        onclick="window.location.href = window.location.href.split('?')[0]"><i class="fa fa-eye-slash"></i>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titre du cours</th>
+                                <th>Enseignant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($categoryCourses as $course): ?>
+                                <tr>
+                                    <td><?= $course['id_cour']; ?></td>
+                                    <td><?= $course['titre_cour']; ?></td>
+                                    <td><?= $course['nom']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php else: ?>
+            <div></div>
+        <?php endif; ?>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            // Sidebar Toggle
+            $("#sidebarToggle").click(function (e) {
+                e.preventDefault();
+                $(".sidebar").toggleClass("active");
+                $(".main-content").toggleClass("active");
             });
-        });
-    </script>
+
+            // Make menu items active on click
+            $(".menu-item").click(function () {
+                $(".menu-item").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            // Add this to your existing script section
+            document.addEventListener('DOMContentLoaded', function () {
+                // Animate numbers when in view
+                const animateValue = (obj, start, end, duration) => {
+                    let startTimestamp = null;
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        obj.innerHTML = Math.floor(progress * (end - start) + start);
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                };
+
+                // Create intersection observer
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const endValue = parseInt(target.getAttribute('data-value'));
+                            animateValue(target, 0, endValue, 2000);
+                            entry.target.classList.add('animate-in');
+                            observer.unobserve(target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                // Observe all stat card numbers
+                document.querySelectorAll('.stat-card h3').forEach(el => {
+                    const currentValue = el.innerHTML;
+                    el.setAttribute('data-value', currentValue);
+                    el.innerHTML = '0';
+                    observer.observe(el);
+                });
+            });
+        </script>
 </body>
 
 </html>

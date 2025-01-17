@@ -228,14 +228,14 @@ if (isset($_GET['id'])) {
                                 <div id="content1" class="collapse show" data-parent="#courseContent">
                                     <div class="card-body bg-light">
                                         <?php if ($course->is_video == 1): ?>
-                                            <a href="<?= $course->contenu_cours ?>"
+                                            <a href="<?= $course->contenu_cours ?>" target="_blank"
                                                 class="d-flex align-items-center text-dark mb-3">
                                                 <i class="fa fa-play-circle text-primary mr-3"></i>
                                                 <span>Video qui suite le cours</span>
                                                 <span class="ml-auto">30 min</span>
                                             </a>
                                         <?php else: ?>
-                                            <a href="<?= $course->contenu_cours ?>"
+                                            <a href="<?= $course->contenu_cours ?>" target="_blank"
                                                 class="d-flex align-items-center text-dark mb-3">
                                                 <i class="fa fa-file-pdf text-primary mr-3"></i>
                                                 <span>Documentaion du cours</span>
