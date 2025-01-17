@@ -146,7 +146,9 @@ $LignesSelectioner = ceil($totalLignes / $LigneParPage);
                             style="text-decoration: none;color: black;font-weight: bold;border-radius: 5px;padding: 5px 10px;background-color: #f5f5f5;"
                             data-toggle="dropdown"><?php echo $_SESSION['utilisateur']['nom']; ?></a>
                         <div class="dropdown-menu m-0" style="border-radius: 5px;">
-                            <a href="mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <?php if ($_SESSION['utilisateur']['role'] == 'etudiant'): ?>
+                                <a href="./mesCours.php" class="dropdown-item">Mes Cours</a>
+                            <?php endif; ?>
                             <a href="../actions/lougout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     </div>

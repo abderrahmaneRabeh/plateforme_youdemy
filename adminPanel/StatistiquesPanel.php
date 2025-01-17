@@ -220,10 +220,10 @@ if (isset($_GET['category_id'])) {
 
         <div class="p-3 bg-white rounded shadow-sm d-flex align-items-center justify-content-between mt-4"
             style="width: 83%;margin: auto;">
-            <h3 class="d-inline-block text-muted mb-0"><span
+            <h4 class="d-inline-block text-muted mb-0"><span
                     class="animate-in text-primary"><?= $CoursPlusEtudinat['titre_cour'] ?></span> est le cours le plus
                 étudiants:
-            </h3>
+            </h4>
             <h3 class="d-inline-block  text-primary ml-2 mb-0"><?= $CoursPlusEtudinat['total'] ?></h3>
         </div>
 
