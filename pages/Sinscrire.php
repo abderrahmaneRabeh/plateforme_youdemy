@@ -147,11 +147,12 @@ seConnecterRedirect();
             <form id="registerForm" method="POST" action="../actions/Sinscrire_action.php">
                 <div class="form-group">
                     <input type="text" class="form-control" id="name" name="name" placeholder="Nom complet" required>
-                    <div class="invalid-feedback">Veuillez entrer votre nom complet</div>
+                    <div class="invalid-feedback">Veuillez entrer votre nom correct.</div>
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail"
                         required>
+                    <div class="invalid-feedback">Veuillez entrer une adresse e-mail valide.</div>
                     <?php if (isset($_SESSION['error_email'])): ?>
                         <div class="invalid-feedback" style="display: block;">
                             <?php echo $_SESSION['error_email'];
@@ -181,6 +182,7 @@ seConnecterRedirect();
                 <div class="form-group">
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                         placeholder="Confirmez le mot de passe" required>
+                    <div class="invalid-feedback">Les mots de passe ne correspondent pas.</div>
                 </div>
                 <button type="submit" class="btn btn-primary">S'inscrire</button>
             </form>
@@ -190,6 +192,47 @@ seConnecterRedirect();
         </div>
     </div>
 
+
+    <script>
+        let name = document.getElementById('name');
+        let email = document.getElementById('email');
+        let password = document.getElementById('password');
+        let confirmPassword = document.getElementById('confirmPassword');
+
+        name.addEventListener('input', function () {
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (!nameRegex.test(name.value)) {
+                name.classList.add('is-invalid');
+                name.nextElementSibling.style.display = 'block';
+            } else {
+                name.classList.remove('is-invalid');
+                name.nextElementSibling.style.display = 'none';
+            }
+
+        });
+        email.addEventListener('input', function () {
+            console.log(email.value);
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.classList.add('is-invalid');
+                email.nextElementSibling.style.display = 'block';
+            } else {
+                email.classList.remove('is-invalid');
+                email.nextElementSibling.style.display = 'none';
+            }
+        });
+        confirmPassword.addEventListener('input', function () {
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.classList.add('is-invalid');
+                confirmPassword.nextElementSibling.style.display = 'block';
+            } else {
+                confirmPassword.classList.remove('is-invalid');
+                confirmPassword.nextElementSibling.style.display = 'none';
+            }
+
+        });
+    </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

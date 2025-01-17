@@ -60,6 +60,7 @@ seConnecterRedirect();
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail"
                         required>
+                    <div class="invalid-feedback">Veuillez entrer une adresse e-mail valide.</div>
                     <?php if (isset($_SESSION['error_email'])): ?>
                         <div class="invalid-feedback" style="display: block;">
                             <?php echo $_SESSION['error_email'];
@@ -90,6 +91,21 @@ seConnecterRedirect();
         </div>
     </div>
 
+    <script>
+        let email = document.getElementById('email');
+        email.addEventListener('input', function () {
+            console.log(email.value);
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.classList.add('is-invalid');
+                email.nextElementSibling.style.display = 'block';
+            } else {
+                email.classList.remove('is-invalid');
+                email.nextElementSibling.style.display = 'none';
+            }
+        });
+    </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
