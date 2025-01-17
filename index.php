@@ -97,15 +97,24 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
+
+        <!-- afficher un message pour les etudiants banner -->
+        <?php if (isset($_SESSION['Banned'])): ?>
+            <div class="popup" style="position: fixed; top: 20%; left: 50%; z-index: 1000;">
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION['Banned']; ?>
+                </div>
+            </div>
+            <?php unset($_SESSION['Banned']); ?>
+        <?php endif; ?>
         <div class="container text-center my-2 py-2">
             <h1 class="text-white mt-4 mb-4">Vous &ecirc;tes &agrave; la bonne place</h1>
             <h1 class="text-white display-4 mb-5">D&eacute;couvrez nos cours d'apprentissage</h1>
             <div class="mx-auto mb-2" style="width: 100%; max-width: 800px;">
                 <p class="text-white">Vous cherchez une plateforme de formation en ligne pour am&eacute;liorer vos
-                    comp&eacute;tences ? VousDemy est l'endroit id&eacute;al pour vous. Nous offrons des milliers de
+                    comp&eacute;tences ? YouDemy est l'endroit id&eacute;al pour vous. Nous offrons des milliers de
                     cours dans des domaines diff&eacute;rents pour vous aider &agrave; atteindre vos objectifs.</p>
             </div>
         </div>

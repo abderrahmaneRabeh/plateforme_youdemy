@@ -2,18 +2,32 @@
 session_start();
 
 use Models\CourseModel;
+use Models\EtudiantModel;
 require_once '../models/CourseModel.php';
+require_once '../models/EtudiantModel.php';
 require_once '../middlewares/ConnectionAccess.php';
 
 $id_utilisateur = $_SESSION['utilisateur']['id_utilisateur'];
 $courseModel = new CourseModel();
 
 $Mycourses = $courseModel->MyCourses($id_utilisateur);
+$etudiantModel = new EtudiantModel();
+
 // echo "<pre>";
 // print_r(value: $Mycourses);
 // echo "</pre>";
 
+$utilisateurData = $etudiantModel->SelectedEtudiant($_SESSION['utilisateur']['id_utilisateur']);
 
+$isBanned = $utilisateurData['is_baned'];
+
+
+if ($isBanned == 1) {
+    $_SESSION['Banned'] = "Vous avez été banni par l'administrateur. Contacter l'administrateur pour plus d'informations.";
+    header("Location: ../index.php");
+    exit();
+
+}
 ?>
 
 <!DOCTYPE html>

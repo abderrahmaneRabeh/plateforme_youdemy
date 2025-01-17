@@ -19,13 +19,23 @@ $courseModel = new AfficherListeCoursModel();
 $TagModel = new TagModel();
 
 
-$utilisateur_id = $etudiantModel->SelectedEtudiant($_SESSION['utilisateur']['id_utilisateur']);
-$utilisateur_id = $utilisateur_id['id_etudiant'];
-
+$utilisateurData = $etudiantModel->SelectedEtudiant($_SESSION['utilisateur']['id_utilisateur']);
 // echo "<pre>";
-// print_r(value: $inscriptionsList);
+// print_r(value: $utilisateurData['is_baned']);
 // echo "</pre>";
+$utilisateur_id = $utilisateurData['id_etudiant'];
+$isBanned = $utilisateurData['is_baned'];
+
 // echo $utilisateur_id;
+// echo "<br>";
+// echo $isBanned;
+
+if ($isBanned == 1) {
+    $_SESSION['Banned'] = "Vous avez été banni par l'administrateur. Contacter l'administrateur pour plus d'informations.";
+    header("Location: ../index.php");
+    exit();
+
+}
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
