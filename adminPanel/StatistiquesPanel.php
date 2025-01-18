@@ -16,6 +16,7 @@ $totalCategories = $statistiqueModel->Nombre_total_Categories();
 $totalTags = $statistiqueModel->Nombre_total_Tags();
 $repartitionParCategorie = $statistiqueModel->repartitionParCategorie();
 $CoursPlusEtudinat = $statistiqueModel->CoursPlusEtudinat();
+$TopTreeEnseignants = $statistiqueModel->TopTreeEnseignants();
 
 if (isset($_GET['category_id'])) {
 
@@ -216,8 +217,6 @@ if (isset($_GET['category_id'])) {
                 </div>
             </div>
         </div>
-
-
         <div class="p-3 bg-white rounded shadow-sm d-flex align-items-center justify-content-between mt-4"
             style="width: 83%;margin: auto;">
             <h4 class="d-inline-block text-muted mb-0"><span
@@ -226,6 +225,19 @@ if (isset($_GET['category_id'])) {
             </h4>
             <h3 class="d-inline-block  text-primary ml-2 mb-0"><?= $CoursPlusEtudinat['total'] ?></h3>
         </div>
+
+        <div class="top-enseignants mt-5">
+            <h4 class="mb-4">Top 3 Enseignants</h4>
+            <div class="list-group">
+                <?php foreach ($TopTreeEnseignants as $enseignant): ?>
+                    <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <span><?= $enseignant['nom'] ?></span>
+                        <span class="badge badge-primary badge-pill">Nombre de cours : <?= $enseignant['topTree'] ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
 
 
 
