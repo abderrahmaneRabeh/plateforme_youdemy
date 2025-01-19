@@ -248,165 +248,73 @@
                 </div>
             </div>
         </div>
-        <div class="owl-carousel courses-carousel">
-            <div class="courses-item position-relative">
-                <img class="./assets/img-fluid" src="./assets/img/courses-1.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4">
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="./assets/img-fluid" src="./assets/img/courses-2.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4">
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="./assets/img-fluid" src="./assets/img/courses-3.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4">
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="./assets/img-fluid" src="./assets/img/courses-4.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4">
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="./assets/img-fluid" src="./assets/img/courses-5.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4">
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="./assets/img-fluid" src="./assets/img/courses-6.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4">
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- Courses End -->
+        <!-- Courses End -->
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
-        <div class="container mt-5 pt-5">
-            <div class="row">
-                <div class="col-md-6 mb-5">
-                    <a href="index.html" class="navbar-brand">
-                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>YouDemy</h1>
-                    </a>
-                    <p class="m-0">YouDemy est une plateforme de formation en ligne qui propose des cours et des
-                        formations dans divers domaines. Nous offrons des ressources &eacute;ducatives et des outils
-                        pour vous aider &agrave; am&eacute;liorer vos comp&eacute;tences et &agrave; atteindre vos
-                        objectifs.</p>
-                </div>
-                <div class="col-md-6 mb-5">
-                    <h3 class="text-white mb-4">Abonnez-vous &agrave; notre newsletter</h3>
-                    <div class="w-100">
-                        <div class="input-group">
-                            <input type="text" class="form-control border-light" style="padding: 30px;"
-                                placeholder="Votre adresse e-mail">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary px-4">Inscrivez-vous</button>
+        <!-- Footer Start -->
+        <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
+            <div class="container mt-5 pt-5">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <a href="index.html" class="navbar-brand">
+                            <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>YouDemy
+                            </h1>
+                        </a>
+                        <p class="m-0">YouDemy est une plateforme de formation en ligne qui propose des cours et des
+                            formations dans divers domaines. Nous offrons des ressources &eacute;ducatives et des outils
+                            pour vous aider &agrave; am&eacute;liorer vos comp&eacute;tences et &agrave; atteindre vos
+                            objectifs.</p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h3 class="text-white mb-4">Abonnez-vous &agrave; notre newsletter</h3>
+                        <div class="w-100">
+                            <div class="input-group">
+                                <input type="text" class="form-control border-light" style="padding: 30px;"
+                                    placeholder="Votre adresse e-mail">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary px-4">Inscrivez-vous</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid bg-dark text-white-50 border-top py-4"
-        style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">YouDemy</a>. Tous droits
-                        r&eacute;serv&eacute;s.
-                    </p>
-                </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <p class="m-0">Crée par <a class="text-white" href="https://htmlcodex.com">Abderrahmane Rabeh</a>
-                    </p>
+        <div class="container-fluid bg-dark text-white-50 border-top py-4"
+            style="border-color: rgba(256, 256, 256, .1) !important;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                        <p class="m-0">Copyright &copy; <a class="text-white" href="#">YouDemy</a>. Tous droits
+                            r&eacute;serv&eacute;s.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-right">
+                        <p class="m-0">Crée par <a class="text-white" href="https://htmlcodex.com">Abderrahmane
+                                Rabeh</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i
-            class="fa fa-angle-double-up"></i></a>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i
+                class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/lib/easing/easing.min.js"></script>
-    <script src="./assets/lib/waypoints/waypoints.min.js"></script>
-    <script src="./assets/lib/counterup/counterup.min.js"></script>
-    <script src="./assets/lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="./assets/js/main.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="./assets/lib/easing/easing.min.js"></script>
+        <script src="./assets/lib/waypoints/waypoints.min.js"></script>
+        <script src="./assets/lib/counterup/counterup.min.js"></script>
+        <script src="./assets/lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- Template Javascript -->
+        <script src="./assets/js/main.js"></script>
 </body>
 
 </html>

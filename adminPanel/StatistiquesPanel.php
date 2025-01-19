@@ -247,8 +247,8 @@ if (isset($_GET['category_id'])) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <td>nom de category</td>
-                            <td>nombre de courses</td>
+                            <th>nom de category</th>
+                            <th>nombre de courses</th>
                         </tr>
                     </thead>
                     <tbody>

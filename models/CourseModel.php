@@ -69,13 +69,20 @@ class CourseModel
             $description = $course['description_cours'];
             $category_id = $course['category_name'];
             $id_enseignant = $course['nom'];
-            $id_utilisateur = $course['id_utilisateur'];
             $is_video = $course['is_video'];
 
             $coursesObj[] = new Course($title, $imgPrincipale_cours, $imgSecondaire_cours, $description, $contenu_cours, $category_id, $id_enseignant, $is_video, $id_cours);
         }
 
         return $coursesObj;
+    }
+
+    public function getAllCoursesIndex()
+    {
+        $sql = "SELECT * FROM cours co join categories ca on co.category_id = ca.id_category join enseignants en on co.id_enseignant = en.id_enseignant join utilisateurs u on en.id_utilisateur = u.id_utilisateur";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
     public function getAllEnseignantCourses($id)
     {
