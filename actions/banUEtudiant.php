@@ -14,9 +14,9 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     $action = $_GET['action'];
 
     if ($action == 1) {
-        $msg = "Etudinat Activer avec Success";
-    } else {
         $msg = "Etudinat banner avec Success";
+    } else {
+        $msg = "Etudinat Activer avec Success";
     }
 
     $etudiantModel = new EtudiantModel();
